@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\NotifyingAgencyController;
+use App\Http\Middleware\CustomPreValidate;
+use App\Models\JurisdictionRegion;
+use App\Models\NotifyingAgency;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +20,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::middleware([CustomPreValidate::class])->group(function () {
+    Route::prefix('notifying_agencies')->group(function () {
+        Route::post('/{id?}', [NotifyingAgencyController::class, 'getNotifyingAgencies']);
+        Route::post('{na_id}/jurisdiction_regions', [NotifyingAgencyController::class, 'getJurisdictionRegions']);
+    });
 });
