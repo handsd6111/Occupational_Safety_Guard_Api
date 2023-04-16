@@ -23,11 +23,13 @@ def execSql(sql: str):
         cursor.execute(sql)
         # 提交修改
         db.commit()
-    except:
+    except Exception as e:
         # 發生錯誤時停止執行SQL
         db.rollback()
-        print('error-sql:')
-        print(sql)
+        print('error-sql: ' + sql)
+        print('error-message: ')
+        print(e)
+        
     # 關閉連線
     db.close()
     return cursor
