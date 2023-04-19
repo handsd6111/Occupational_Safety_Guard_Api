@@ -1,0 +1,152 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Occupational Safety Guard Api",
+        "description": "用於資料創新應用競賽-職場安全創新應用組的後端API",
+        "contact": {
+            "email": "s20313116@stu.edu.tw"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://cool.aronhome.com:51504",
+            "description": "正式區"
+        }
+    ],
+    "paths": {
+        "/": {},
+        "/api/notifying_agencies/{id}": {
+            "post": {
+                "tags": [
+                    "通報機關地圖"
+                ],
+                "summary": "通報機關",
+                "description": "查詢單筆或多筆的通報機關。",
+                "operationId": "123085e86154b64ac34adfca9dd020bc",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "若想要查詢單筆，請帶入機關編碼，查多筆可不帶0，這裡是因為Swagger不帶值會預設給空白。",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 0
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "page": {
+                                        "type": "integer"
+                                    },
+                                    "count": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "page": 1,
+                                    "count": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "請求成功。",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "data": [
+                                        {
+                                            "id": 1,
+                                            "agency_name": "勞動部職業安全衛生署北區職業安全衛生中心",
+                                            "address": "24219 新北市新莊區中平路439號南棟9樓",
+                                            "notified_hotline_at_work": "02-89956720",
+                                            "notified_hotline_off_work": "02-89956720"
+                                        }
+                                    ],
+                                    "statusCode": 200,
+                                    "message": "請求成功。",
+                                    "countOfData": 17,
+                                    "countOfPage": 17
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/notifying_agencies/{id}/jurisdiction_regions": {
+            "post": {
+                "tags": [
+                    "通報機關地圖"
+                ],
+                "summary": "管轄區",
+                "description": "查詢通報機關所管轄的區域。",
+                "operationId": "9ee1ece4a913a62566148124b3583250",
+                "parameters": [
+                    {
+                        "name": "na_id",
+                        "in": "path",
+                        "description": "欲查詢哪一筆通報機關的管轄區，帶入通報機關的id。",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "page": {
+                                        "type": "integer"
+                                    },
+                                    "count": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "page": 1,
+                                    "count": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "請求成功。",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "data": [
+                                        {
+                                            "id": 1,
+                                            "na_id": 1,
+                                            "region": "新北市"
+                                        }
+                                    ],
+                                    "statusCode": 200,
+                                    "message": "請求成功。",
+                                    "countOfData": 17,
+                                    "countOfPage": 17
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
