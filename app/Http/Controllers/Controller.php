@@ -32,7 +32,7 @@ class Controller extends BaseController
         if ($message === null) {
             $message = IStatusCode::Message[$statusCode];
         }
-
+        $headers['Content-Type'] = "application/json";
         $result = [
             'data' => $data,
             'statusCode' => $statusCode,
