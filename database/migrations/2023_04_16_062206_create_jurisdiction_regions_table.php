@@ -25,7 +25,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('jurisdiction_regions', function (Blueprint $table) {
-            $table->dropForeign('na_id');
+            $table->dropForeign(['na_id']);
         });
         Schema::dropIfExists('jurisdiction_regions');
     }
