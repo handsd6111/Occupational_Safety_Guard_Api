@@ -16,6 +16,123 @@
     ],
     "paths": {
         "/": {},
+        "/api/counties": {
+            "post": {
+                "tags": [
+                    "縣市、鄉鎮市區"
+                ],
+                "summary": "縣市",
+                "description": "查詢多筆的縣市資料。",
+                "operationId": "85054bf3ba19d8e357428c3e0c275419",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "page": {
+                                        "type": "integer"
+                                    },
+                                    "count": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "page": 1,
+                                    "count": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "請求成功。",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "data": [
+                                        {
+                                            "code": "A",
+                                            "name": "臺北市"
+                                        }
+                                    ],
+                                    "statusCode": 200,
+                                    "message": "請求成功。",
+                                    "countOfData": 22,
+                                    "countOfPage": 22
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/counties/{countyCode}/towns": {
+            "post": {
+                "tags": [
+                    "縣市、鄉鎮市區"
+                ],
+                "summary": "鄉鎮市區",
+                "description": "查詢此縣市所擁有的鄉鎮市區資料。",
+                "operationId": "35ee5eba3f5f14f7faf81d59c3915918",
+                "parameters": [
+                    {
+                        "name": "countyCode",
+                        "in": "path",
+                        "description": "欲查詢哪一筆通報機關的管轄區，帶入通報機關的id。",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "A"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "page": {
+                                        "type": "integer"
+                                    },
+                                    "count": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "page": 1,
+                                    "count": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "請求成功。",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "data": [
+                                        {
+                                            "code": "A01",
+                                            "name": "松山區",
+                                            "county_code": "A"
+                                        }
+                                    ],
+                                    "statusCode": 200,
+                                    "message": "請求成功。",
+                                    "countOfData": 12,
+                                    "countOfPage": 12
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/notifying_agencies/{id}": {
             "post": {
                 "tags": [
