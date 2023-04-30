@@ -130,5 +130,5 @@ interface NotifyingAgency extends Info
      *     )
      * )
      */
-    public function getJurisdictionRegions(Request $request, int $id = 0);
+    public function getJurisdictionRegions(Request $request, int $na_id);
 }
