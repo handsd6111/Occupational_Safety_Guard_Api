@@ -23,13 +23,13 @@ for county in tree.findall('countyItem'):
         execSql(insertOneRow('counties', columns, datas)) # 則寫入
         
     # 做鄉鎮市區
-    townApiLink = "https://api.nlsc.gov.tw/other/ListTown/{countyCode}".format(countyCode=countyCode)
+    townApiLink = "https://api.nlsc.gov.tw/other/ListTown1/{countyCode}".format(countyCode=countyCode)
     townOutput = rq.get(townApiLink).text
     townTree = et.fromstring(townOutput)
     
     for town in townTree.findall('townItem'):
-        townCode = town[0].text
-        townName = town[1].text
+        townCode = town[1].text 
+        townName = town[2].text 
         columns = ['code', 'name', 'county_code']
         datas = [townCode, townName, countyCode]
         
