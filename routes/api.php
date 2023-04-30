@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CountyController;
 use App\Http\Controllers\NotifyingAgencyController;
 use App\Http\Middleware\CustomPreValidate;
 use App\Models\JurisdictionRegion;
@@ -26,5 +27,9 @@ Route::middleware([CustomPreValidate::class])->group(function () {
     Route::prefix('notifying_agencies')->group(function () {
         Route::post('/{id?}', [NotifyingAgencyController::class, 'getNotifyingAgencies']);
         Route::post('{na_id}/jurisdiction_regions', [NotifyingAgencyController::class, 'getJurisdictionRegions']);
+    });
+    Route::prefix('counties')->group(function () {
+        Route::post('', [CountyController::class, 'getCounty']);
+        Route::post('/{county_code}/towns', [CountyController::class, 'getTown']);
     });
 });
