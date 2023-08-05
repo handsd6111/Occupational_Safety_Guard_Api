@@ -2,7 +2,14 @@
 
 namespace App\Exceptions;
 
+use App\Http\Controllers\Controller;
+use App\Models\Interfaces\IStatusCode;
+use DomainException;
+use Exception;
+use Firebase\JWT\ExpiredException;
+use Firebase\JWT\SignatureInvalidException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Request;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -41,8 +48,19 @@ class Handler extends ExceptionHandler
      */
     public function register(): void
     {
-        $this->reportable(function (Throwable $e) {
-            //
+        // $this->reportable(function (Throwable $e) {
+
+        // });
+        $this->renderable(function (Exception $ex, Request $request) {
+            // if ($ex instanceof DomainException) {
+            //     return Controller::sendResponse([$ex->getMessage()], IStatusCode::BAD_REQUEST);
+            // } else if ($ex instanceof SignatureInvalidException) {
+            //     return Controller::sendResponse([$ex->getMessage()], IStatusCode::BAD_REQUEST);
+            // } else if ($ex instanceof ExpiredException) {
+            //     return Controller::sendResponse([$ex->getMessage()], IStatusCode::BAD_REQUEST);
+            // } else {
+                
+            // }
         });
     }
 }
