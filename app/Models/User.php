@@ -18,6 +18,11 @@ class User extends Model
         'enabled'
     ];
 
+    public function refreshTokens()
+    {
+        return $this->hasMany(RefreshToken::class, 'user_id', 'id');
+    }
+
     public function roles(): BelongsToMany
     {
         return $this->belongsToMany(Role::class, 'user_role', 'user_id', 'role_id');
