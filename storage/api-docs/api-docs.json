@@ -200,14 +200,14 @@
                 }
             }
         },
-        "/api/notifying_agencies/{id}/jurisdiction_regions": {
+        "/api/notifying_agencies/{na_id}/jurisdiction_regions": {
             "post": {
                 "tags": [
                     "通報機關地圖"
                 ],
                 "summary": "管轄區",
                 "description": "查詢通報機關所管轄的區域。",
-                "operationId": "9ee1ece4a913a62566148124b3583250",
+                "operationId": "d655a564a8a99e38ceb79e42bf4645dc",
                 "parameters": [
                     {
                         "name": "na_id",

@@ -73,7 +73,7 @@ interface NotifyingAgency extends Info
     /**
      * @OA\Post(
      *     tags={"通報機關地圖"},
-     *     path="/api/notifying_agencies/{id}/jurisdiction_regions",
+     *     path="/api/notifying_agencies/{na_id}/jurisdiction_regions",
      *     summary="管轄區",
      *     description="查詢通報機關所管轄的區域。",
      *     @OA\Parameter(
