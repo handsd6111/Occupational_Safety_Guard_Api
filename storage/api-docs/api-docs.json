@@ -16,6 +16,107 @@
     ],
     "paths": {
         "/": {},
+        "/api/auth/login": {
+            "post": {
+                "tags": [
+                    "授權"
+                ],
+                "summary": "登入",
+                "description": "登入現有的使用者，並透過JWT操作其他需授權API",
+                "operationId": "c70382a4d384ca2415b757a0ff8abc53",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "account": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "account": "test",
+                                    "password": "testtest"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "請求成功。",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "data": {
+                                        "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJvc2dhX2FwaSIsImlhdCI6MTY5MTIxODI5OSwibmJmIjoxNjkxMjE4Mjk5LCJleHAiOjE2OTEyMTg0NzksInVzZXJJZCI6NiwidXNlckFjY291bnQiOiJ0ZXN0IiwidXNlckVtYWlsIjoidGVzdEBnbWFpbC5jb20iLCJ1c2VyTmFtZSI6InRlc3QiLCJ1c2VyUm9sZXMiOlsidXNlciJdfQ.tIDrkKMuG7nWxSJUlTlYuMFje3RDMaq13gAI9U6M9r19fW916dduEcAl1aHep5D22_LhmYiGSysknfz5ni9vlO5g_zo3D8aJ_IC3v02ZQj_XTZ006eRFUWYiW8qzYCEJKEkF9AMFGw5_lH3ofM6mBnommJBbrV5ufbSy1CTggkajNcELhsjtKsz9rRF3xASON1Sq-9oouMbOw8XkYHzTJKoIlAE5XLf_6gJXCZEBcMC_oE1kcliR42LMiqkD_fGqfrBfOCfUdd8xkTBTlW1xUoa2wt8_-BcVo0hvLHvolnzDZ5ww8zmib6_2z9zpI4HuSpOvQLsRzLHBnjsBegMpkA",
+                                        "refresh_token": "99d0be99-9ca4-4283-8b22-37046bf3de22"
+                                    },
+                                    "statusCode": 200,
+                                    "message": "請求成功。",
+                                    "countOfData": 0,
+                                    "countOfPage": 0
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/auth/refresh_token": {
+            "post": {
+                "tags": [
+                    "授權"
+                ],
+                "summary": "Refresh Token",
+                "description": "拿舊的 Token 換發新的 Token。",
+                "operationId": "fd5388523ff7bef045696c56f2c84990",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "refresh_token": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "refresh_token": "99d0bf9c-280f-4ad6-a14f-dab6b579f047"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "請求成功。",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "data": {
+                                        "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJvc2dhX2FwaSIsImlhdCI6MTY5MTIxODI5OSwibmJmIjoxNjkxMjE4Mjk5LCJleHAiOjE2OTEyMTg0NzksInVzZXJJZCI6NiwidXNlckFjY291bnQiOiJ0ZXN0IiwidXNlckVtYWlsIjoidGVzdEBnbWFpbC5jb20iLCJ1c2VyTmFtZSI6InRlc3QiLCJ1c2VyUm9sZXMiOlsidXNlciJdfQ.tIDrkKMuG7nWxSJUlTlYuMFje3RDMaq13gAI9U6M9r19fW916dduEcAl1aHep5D22_LhmYiGSysknfz5ni9vlO5g_zo3D8aJ_IC3v02ZQj_XTZ006eRFUWYiW8qzYCEJKEkF9AMFGw5_lH3ofM6mBnommJBbrV5ufbSy1CTggkajNcELhsjtKsz9rRF3xASON1Sq-9oouMbOw8XkYHzTJKoIlAE5XLf_6gJXCZEBcMC_oE1kcliR42LMiqkD_fGqfrBfOCfUdd8xkTBTlW1xUoa2wt8_-BcVo0hvLHvolnzDZ5ww8zmib6_2z9zpI4HuSpOvQLsRzLHBnjsBegMpkA",
+                                        "refresh_token": "99d0be99-9ca4-4283-8b22-37046bf3de22"
+                                    },
+                                    "statusCode": 200,
+                                    "message": "請求成功。",
+                                    "countOfData": 0,
+                                    "countOfPage": 0
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_jwt_security": []
+                    }
+                ]
+            }
+        },
         "/api/counties": {
             "post": {
                 "tags": [
@@ -263,6 +364,73 @@
                         }
                     }
                 }
+            }
+        },
+        "/api/auth/register": {
+            "post": {
+                "tags": [
+                    "使用者"
+                ],
+                "summary": "註冊",
+                "description": "註冊一個新的使用者",
+                "operationId": "3cf4cb807e45afd57a0bfbb55e289df0",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "account": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "username": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "account": "m01",
+                                    "password": "p@ssW0rD",
+                                    "username": "m01Name",
+                                    "email": "m01@gmail.com"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "建立資料成功。",
+                        "content": {
+                            "application/json": {
+                                "example": [
+                                    {
+                                        "data": [],
+                                        "statusCode": 201,
+                                        "message": "建立資料成功。",
+                                        "countOfData": 0,
+                                        "countOfPage": 0
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "api_jwt_security": {
+                "type": "apiKey",
+                "description": "JWT Token",
+                "name": "Authorization",
+                "in": "header"
             }
         }
     }
