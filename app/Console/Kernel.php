@@ -12,7 +12,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
+        // 記得要去 crontab -e 寫入 * * * * * php /path/to/artisan schedule:run
+        $schedule->command('remove-if-refresh-token-expired')->daily();
     }
 
     /**
@@ -20,7 +21,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands(): void
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }
