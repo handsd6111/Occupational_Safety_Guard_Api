@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Validator;
 
 class IndustryController extends Controller
 {
-    public function getIndustry(Request $request, string $code = null)
+    public function getIndustry(Request $request, string $code = '')
     {
         $request['code'] = $code;
 
