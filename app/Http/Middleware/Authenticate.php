@@ -8,6 +8,7 @@ use App\Models\Interfaces\IStatusCode;
 use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
 
 class Authenticate
@@ -19,10 +20,21 @@ class Authenticate
      */
     public function handle(Request $request, Closure $next, string $needRole): Response
     {
+
         // 取得Request的Header。
-        $header = $request->header('authorization');
+        $authorization = $request->header('authorization');
+
+        $validator = Validator::make(['access_token' => $authorization], [
+            'access_token' => 'required|string'
+        ]);
+
+        // 驗證錯誤時
+        if ($validator->fails()) {
+            return Controller::sendResponse($validator->errors(), IStatusCode::BAD_REQUEST);
+        }
+
         // 從Header中取得JWT。
-        $jwt = str_replace("Bearer ", '', $header);
+        $jwt = str_replace("Bearer ", '', $authorization);
         // 解包JWT取得使用者資訊。
         $accessItem = TokenController::decodeJwt($jwt);
         // 透過UserId取得指定User。

@@ -35,10 +35,10 @@ Route::get('test', function () {
 Route::prefix('auth')->group(function () {
     Route::post('register', [UserController::class, 'create']);
     Route::post('login', [AuthController::class, 'login']);
-    Route::post('refresh_token', [AuthController::class, 'refreshToken']);
+    Route::post('refresh_token', [AuthController::class, 'refreshToken'])->middleware('auth:user');
 });
 
-Route::middleware(['auth:user', CustomPreValidate::class])->group(function () {
+Route::middleware([CustomPreValidate::class])->group(function () {
     Route::prefix('notifying_agencies')->group(function () {
         Route::get('/{id?}', [NotifyingAgencyController::class, 'getNotifyingAgencies']);
         Route::get('{na_id}/jurisdiction_regions', [NotifyingAgencyController::class, 'getJurisdictionRegions']);
@@ -48,8 +48,8 @@ Route::middleware(['auth:user', CustomPreValidate::class])->group(function () {
         Route::get('/{county_code}/towns', [CountyController::class, 'getTown']);
     });
     Route::prefix('industries')->group(function () {
-        Route::get('/{code}', [IndustryController::class, 'getIndustry'])->withoutMiddleware(CustomPreValidate::class);
         Route::get('', [IndustryController::class, 'getIndustry']);
+        Route::get('/{code}', [IndustryController::class, 'getIndustry'])->withoutMiddleware(CustomPreValidate::class);
     });
 });
 
