@@ -16,49 +16,59 @@ interface User extends Info
      *         @OA\MediaType(
      *             mediaType="application/json",
      *             @OA\Schema(
+     *                 required={"account", "password", "username", "email"},
      *                 @OA\Property(
      *                     property="account",
-     *                     type="string"
+     *                     type="string",
+     *                     example="m001"
      *                 ),
      *                 @OA\Property(
      *                     property="password",
-     *                     type="string"
+     *                     type="string",
+     *                     example="p@ssW0rD"
      *                 ),
-     *                  @OA\Property(
+     *                 @OA\Property(
      *                     property="username",
-     *                     type="string"
+     *                     type="string",
+     *                     example="m001Name"
      *                 ),
      *                 @OA\Property(
      *                     property="email",
-     *                     type="string"
-     *                 ),
-     *                 example=
-     *                 {
-     *                      "account": "m01", 
-     *                      "password": "p@ssW0rD",
-     *                      "username": "m01Name",
-     *                      "email": "m01@gmail.com"
-     *                 }
+     *                     type="string",
+     *                     example="m001@gmail.com"
+     *                 )
      *             )
      *         )
      *     ),
      *     @OA\Response(
-     *          response=201, 
-     *          description="建立資料成功。",
-     *          content={
-     *              @OA\MediaType(
-     *                  mediaType="application/json",
-     *                  example= {
-     *                      {
-     *                          "data": {},
-     *                          "statusCode": 201,
-     *                          "message": "建立資料成功。",
-     *                          "countOfData": 0,
-     *                          "countOfPage": 0
-     *                      }
-     *                  }
-     *              ),
-     *          }
+     *         response=201, 
+     *         description="建立資料成功。",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="data",
+     *                 type="object"
+     *             ),
+     *             @OA\Property(
+     *                 property="statusCode",
+     *                 type="integer",
+     *                 example=201
+     *             ),
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 example="建立資料成功。"
+     *             ),
+     *             @OA\Property(
+     *                 property="countOfData",
+     *                 type="integer",
+     *                 example=0
+     *             ),
+     *             @OA\Property(
+     *                 property="countOfPage",
+     *                 type="integer",
+     *                 example=0
+     *             )
+     *         )
      *     )
      * )
      */

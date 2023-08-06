@@ -7,58 +7,69 @@ use Illuminate\Http\Request;
 interface County extends Info
 {
     /**
-     * @OA\Post(
+     * @OA\Get(
      *     tags={"縣市、鄉鎮市區"},
      *     path="/api/counties",
      *     summary="縣市",
      *     description="查詢多筆的縣市資料。",
-     *     @OA\RequestBody(
-     *         @OA\MediaType(
-     *             mediaType="application/json",
-     *             @OA\Schema(
-     *                 @OA\Property(
-     *                     property="page",
-     *                     type="integer"
-     *                 ),
-     *                 @OA\Property(
-     *                     property="count",
-     *                     type="integer"
-     *                 ),
-     *                 example=
-     *                 {
-     *                      "page": 1, 
-     *                      "count": 1
-     *                 }
-     *             )
-     *         )
+     *     @OA\Parameter(
+     *         name="page",
+     *         in="query",
+     *         description="頁碼",
+     *         required=true,
+     *         @OA\Schema(type="integer"),
+     *         example=1
+     *     ),
+     *     @OA\Parameter(
+     *         name="count",
+     *         in="query",
+     *         description="每頁筆數",
+     *         required=true,
+     *         @OA\Schema(type="integer"),
+     *         example=5
      *     ),
      *     @OA\Response(
-     *          response=200, 
-     *          description="請求成功。",
-     *          content={
-     *              @OA\MediaType(
-     *                  mediaType="application/json",
-     *                  example= {
-     *                          "data": {
-     *                              {
-     *                                  "code": "A",
-     *                                  "name": "臺北市"
-     *                              }
-     *                          },
-     *                          "statusCode": 200,
-     *                          "message": "請求成功。",
-     *                          "countOfData": 22,
-     *                          "countOfPage": 22
-     *                  }
-     *              ),
-     *          }
+     *         response=200, 
+     *         description="請求成功。",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="data",
+     *                 type="array",
+     *                 @OA\Items(
+     *                     @OA\Property(
+     *                         property="code",
+     *                         type="string"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="name",
+     *                         type="string"
+     *                     )
+     *                 )
+     *             ),
+     *             @OA\Property(
+     *                 property="statusCode",
+     *                 type="integer"
+     *             ),
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="countOfData",
+     *                 type="integer"
+     *             ),
+     *             @OA\Property(
+     *                 property="countOfPage",
+     *                 type="integer"
+     *             )
+     *         )
      *     )
      * )
      */
     public function getCounty(Request $request);
 
     /**
-     * @OA\Post(
+     * @OA\Get(
      *     tags={"縣市、鄉鎮市區"},
      *     path="/api/counties/{countyCode}/towns",
      *     summary="鄉鎮市區",
@@ -73,47 +84,61 @@ interface County extends Info
      *              type="string"
      *          )
      *     ),
-     *     @OA\RequestBody(
-     *         @OA\MediaType(
-     *             mediaType="application/json",
-     *             @OA\Schema(
-     *                 @OA\Property(
-     *                     property="page",
-     *                     type="integer"
-     *                 ),
-     *                 @OA\Property(
-     *                     property="count",
-     *                     type="integer"
-     *                 ),
-     *                 example=
-     *                 {
-     *                      "page": 1, 
-     *                      "count": 1
-     *                 }
-     *             )
-     *         )
+     *     @OA\Parameter(
+     *         name="page",
+     *         in="query",
+     *         description="頁碼",
+     *         required=true,
+     *         @OA\Schema(type="integer"),
+     *         example=1
+     *     ),
+     *     @OA\Parameter(
+     *         name="count",
+     *         in="query",
+     *         description="每頁筆數",
+     *         required=true,
+     *         @OA\Schema(type="integer"),
+     *         example=10
      *     ),
      *     @OA\Response(
-     *          response=200, 
-     *          description="請求成功。",
-     *          content={
-     *              @OA\MediaType(
-     *                  mediaType="application/json",
-     *                  example= {
-     *                          "data": {
-     *                              {
-     *                                  "code": "A01",
-     *                                  "name": "松山區",
-     *                                  "county_code": "A"
-     *                              },
-     *                          },
-     *                          "statusCode": 200,
-     *                          "message": "請求成功。",
-     *                          "countOfData": 12,
-     *                          "countOfPage": 12
-     *                  }
-     *              ),
-     *          }
+     *         response=200, 
+     *         description="請求成功。",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="data",
+     *                 type="array",
+     *                 @OA\Items(
+     *                     @OA\Property(
+     *                         property="code",
+     *                         type="string"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="name",
+     *                         type="string"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="county_code",
+     *                         type="string"
+     *                     )
+     *                 )
+     *             ),
+     *             @OA\Property(
+     *                 property="statusCode",
+     *                 type="integer"
+     *             ),
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="countOfData",
+     *                 type="integer"
+     *             ),
+     *             @OA\Property(
+     *                 property="countOfPage",
+     *                 type="integer"
+     *             )
+     *         )
      *     )
      * )
      */

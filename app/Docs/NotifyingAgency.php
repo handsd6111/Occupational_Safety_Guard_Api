@@ -7,71 +7,91 @@ use Illuminate\Http\Request;
 interface NotifyingAgency extends Info
 {
     /**
-     * @OA\Post(
+     * @OA\Get(
      *     tags={"通報機關地圖"},
      *     path="/api/notifying_agencies/{id}",
      *     summary="通報機關",
      *     description="查詢單筆或多筆的通報機關。",
      *     @OA\Parameter(
      *          name="id",
-     *          description="若想要查詢單筆，請帶入機關編碼，查多筆可不帶0，這裡是因為Swagger不帶值會預設給空白。",
+     *          description="若想要查詢單筆，請帶入機關編碼，查多筆可不帶，這裡是因為Swagger不帶值會預設給空白。",
      *          required=false,
      *          in="path",
      *          @OA\Schema(
-     *              default=0,
-     *              type="integer"
+     *              type="integer",
+     *              default=0 
      *          )
      *     ),
-     *     @OA\RequestBody(
-     *         @OA\MediaType(
-     *             mediaType="application/json",
-     *             @OA\Schema(
-     *                 @OA\Property(
-     *                     property="page",
-     *                     type="integer"
-     *                 ),
-     *                 @OA\Property(
-     *                     property="count",
-     *                     type="integer"
-     *                 ),
-     *                 example=
-     *                 {
-     *                      "page": 1, 
-     *                      "count": 1
-     *                 }
-     *             )
-     *         )
+     *     @OA\Parameter(
+     *         name="page",
+     *         in="query",
+     *         description="頁碼",
+     *         required=true,
+     *         @OA\Schema(type="integer"),
+     *         example=1 
+     *     ),
+     *     @OA\Parameter(
+     *         name="count",
+     *         in="query",
+     *         description="每頁筆數",
+     *         required=true,
+     *         @OA\Schema(type="integer"),
+     *         example=10 
      *     ),
      *     @OA\Response(
-     *          response=200, 
-     *          description="請求成功。",
-     *          content={
-     *              @OA\MediaType(
-     *                  mediaType="application/json",
-     *                  example= {
-     *                          "data": {
-     *                              {
-     *                                  "id": 1,
-     *                                  "agency_name": "勞動部職業安全衛生署北區職業安全衛生中心",
-     *                                  "address": "24219 新北市新莊區中平路439號南棟9樓",
-     *                                  "notified_hotline_at_work": "02-89956720",
-     *                                  "notified_hotline_off_work": "02-89956720"
-     *                              }
-     *                          },
-     *                          "statusCode": 200,
-     *                          "message": "請求成功。",
-     *                          "countOfData": 17,
-     *                          "countOfPage": 17
-     *                  }
-     *              ),
-     *          }
+     *         response=200, 
+     *         description="請求成功。",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="data",
+     *                 type="array",
+     *                 @OA\Items(
+     *                     @OA\Property(
+     *                         property="id",
+     *                         type="integer"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="agency_name",
+     *                         type="string"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="address",
+     *                         type="string"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="notified_hotline_at_work",
+     *                         type="string"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="notified_hotline_off_work",
+     *                         type="string"
+     *                     )
+     *                 )
+     *             ),
+     *             @OA\Property(
+     *                 property="statusCode",
+     *                 type="integer"
+     *             ),
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="countOfData",
+     *                 type="integer"
+     *             ),
+     *             @OA\Property(
+     *                 property="countOfPage",
+     *                 type="integer"
+     *             )
+     *         )
      *     )
      * )
      */
     public function getNotifyingAgencies(Request $request, int $id = 0);
 
     /**
-     * @OA\Post(
+     * @OA\Get(
      *     tags={"通報機關地圖"},
      *     path="/api/notifying_agencies/{na_id}/jurisdiction_regions",
      *     summary="管轄區",
@@ -82,51 +102,65 @@ interface NotifyingAgency extends Info
      *          required=true,
      *          in="path",
      *          @OA\Schema(
-     *              default=1,
-     *              type="integer"
+     *              type="integer",
+     *              default=1 
      *          )
      *     ),
-     *     @OA\RequestBody(
-     *         @OA\MediaType(
-     *             mediaType="application/json",
-     *             @OA\Schema(
-     *                 @OA\Property(
-     *                     property="page",
-     *                     type="integer"
-     *                 ),
-     *                 @OA\Property(
-     *                     property="count",
-     *                     type="integer"
-     *                 ),
-     *                 example=
-     *                 {
-     *                      "page": 1, 
-     *                      "count": 1
-     *                 }
-     *             )
-     *         )
+     *     @OA\Parameter(
+     *         name="page",
+     *         in="query",
+     *         description="頁碼",
+     *         required=true,
+     *         @OA\Schema(type="integer"),
+     *         example=1  
+     *     ),
+     *     @OA\Parameter(
+     *         name="count",
+     *         in="query",
+     *         description="每頁筆數",
+     *         required=true,
+     *         @OA\Schema(type="integer"),
+     *         example=10 
      *     ),
      *     @OA\Response(
-     *          response=200, 
-     *          description="請求成功。",
-     *          content={
-     *              @OA\MediaType(
-     *                  mediaType="application/json",
-     *                  example= {
-     *                          "data": {
-     *                              {
-     *                                  "id": 1,
-     *                                  "na_id": 1,
-     *                                  "region": "新北市"
-     *                              }
-     *                          },
-     *                          "statusCode": 200,
-     *                          "message": "請求成功。",
-     *                          "countOfData": 17,
-     *                          "countOfPage": 17
-     *                  }
-     *              ),
-     *          }
+     *         response=200, 
+     *         description="請求成功。",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="data",
+     *                 type="array",
+     *                 @OA\Items(
+     *                     @OA\Property(
+     *                         property="id",
+     *                         type="integer"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="na_id",
+     *                         type="integer"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="region",
+     *                         type="string"
+     *                     )
+     *                 )
+     *             ),
+     *             @OA\Property(
+     *                 property="statusCode",
+     *                 type="integer"
+     *             ),
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="countOfData",
+     *                 type="integer"
+     *             ),
+     *             @OA\Property(
+     *                 property="countOfPage",
+     *                 type="integer"
+     *             )
+     *         )
      *     )
      * )
      */

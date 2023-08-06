@@ -28,19 +28,21 @@
                     "content": {
                         "application/json": {
                             "schema": {
+                                "required": [
+                                    "account",
+                                    "password"
+                                ],
                                 "properties": {
                                     "account": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "example": "test"
                                     },
                                     "password": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "example": "testtest"
                                     }
                                 },
-                                "type": "object",
-                                "example": {
-                                    "account": "test",
-                                    "password": "testtest"
-                                }
+                                "type": "object"
                             }
                         }
                     }
@@ -50,15 +52,39 @@
                         "description": "請求成功。",
                         "content": {
                             "application/json": {
-                                "example": {
-                                    "data": {
-                                        "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJvc2dhX2FwaSIsImlhdCI6MTY5MTIxODI5OSwibmJmIjoxNjkxMjE4Mjk5LCJleHAiOjE2OTEyMTg0NzksInVzZXJJZCI6NiwidXNlckFjY291bnQiOiJ0ZXN0IiwidXNlckVtYWlsIjoidGVzdEBnbWFpbC5jb20iLCJ1c2VyTmFtZSI6InRlc3QiLCJ1c2VyUm9sZXMiOlsidXNlciJdfQ.tIDrkKMuG7nWxSJUlTlYuMFje3RDMaq13gAI9U6M9r19fW916dduEcAl1aHep5D22_LhmYiGSysknfz5ni9vlO5g_zo3D8aJ_IC3v02ZQj_XTZ006eRFUWYiW8qzYCEJKEkF9AMFGw5_lH3ofM6mBnommJBbrV5ufbSy1CTggkajNcELhsjtKsz9rRF3xASON1Sq-9oouMbOw8XkYHzTJKoIlAE5XLf_6gJXCZEBcMC_oE1kcliR42LMiqkD_fGqfrBfOCfUdd8xkTBTlW1xUoa2wt8_-BcVo0hvLHvolnzDZ5ww8zmib6_2z9zpI4HuSpOvQLsRzLHBnjsBegMpkA",
-                                        "refresh_token": "99d0be99-9ca4-4283-8b22-37046bf3de22"
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "access_token": {
+                                                    "type": "string",
+                                                    "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9..."
+                                                },
+                                                "refresh_token": {
+                                                    "type": "string",
+                                                    "example": "99d0be99-9ca4-4283-8b22-37046bf3de22"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "statusCode": {
+                                            "type": "integer",
+                                            "example": 200
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "請求成功。"
+                                        },
+                                        "countOfData": {
+                                            "type": "integer",
+                                            "example": 0
+                                        },
+                                        "countOfPage": {
+                                            "type": "integer",
+                                            "example": 0
+                                        }
                                     },
-                                    "statusCode": 200,
-                                    "message": "請求成功。",
-                                    "countOfData": 0,
-                                    "countOfPage": 0
+                                    "type": "object"
                                 }
                             }
                         }
@@ -78,15 +104,16 @@
                     "content": {
                         "application/json": {
                             "schema": {
+                                "required": [
+                                    "refresh_token"
+                                ],
                                 "properties": {
                                     "refresh_token": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "example": "99d0bf9c-280f-4ad6-a14f-dab6b579f047"
                                     }
                                 },
-                                "type": "object",
-                                "example": {
-                                    "refresh_token": "99d0bf9c-280f-4ad6-a14f-dab6b579f047"
-                                }
+                                "type": "object"
                             }
                         }
                     }
@@ -96,15 +123,39 @@
                         "description": "請求成功。",
                         "content": {
                             "application/json": {
-                                "example": {
-                                    "data": {
-                                        "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJvc2dhX2FwaSIsImlhdCI6MTY5MTIxODI5OSwibmJmIjoxNjkxMjE4Mjk5LCJleHAiOjE2OTEyMTg0NzksInVzZXJJZCI6NiwidXNlckFjY291bnQiOiJ0ZXN0IiwidXNlckVtYWlsIjoidGVzdEBnbWFpbC5jb20iLCJ1c2VyTmFtZSI6InRlc3QiLCJ1c2VyUm9sZXMiOlsidXNlciJdfQ.tIDrkKMuG7nWxSJUlTlYuMFje3RDMaq13gAI9U6M9r19fW916dduEcAl1aHep5D22_LhmYiGSysknfz5ni9vlO5g_zo3D8aJ_IC3v02ZQj_XTZ006eRFUWYiW8qzYCEJKEkF9AMFGw5_lH3ofM6mBnommJBbrV5ufbSy1CTggkajNcELhsjtKsz9rRF3xASON1Sq-9oouMbOw8XkYHzTJKoIlAE5XLf_6gJXCZEBcMC_oE1kcliR42LMiqkD_fGqfrBfOCfUdd8xkTBTlW1xUoa2wt8_-BcVo0hvLHvolnzDZ5ww8zmib6_2z9zpI4HuSpOvQLsRzLHBnjsBegMpkA",
-                                        "refresh_token": "99d0be99-9ca4-4283-8b22-37046bf3de22"
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "access_token": {
+                                                    "type": "string",
+                                                    "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9..."
+                                                },
+                                                "refresh_token": {
+                                                    "type": "string",
+                                                    "example": "99d0be99-9ca4-4283-8b22-37046bf3de22"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "statusCode": {
+                                            "type": "integer",
+                                            "example": 200
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "請求成功。"
+                                        },
+                                        "countOfData": {
+                                            "type": "integer",
+                                            "example": 0
+                                        },
+                                        "countOfPage": {
+                                            "type": "integer",
+                                            "example": 0
+                                        }
                                     },
-                                    "statusCode": 200,
-                                    "message": "請求成功。",
-                                    "countOfData": 0,
-                                    "countOfPage": 0
+                                    "type": "object"
                                 }
                             }
                         }
@@ -118,50 +169,70 @@
             }
         },
         "/api/counties": {
-            "post": {
+            "get": {
                 "tags": [
                     "縣市、鄉鎮市區"
                 ],
                 "summary": "縣市",
                 "description": "查詢多筆的縣市資料。",
-                "operationId": "85054bf3ba19d8e357428c3e0c275419",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "properties": {
-                                    "page": {
-                                        "type": "integer"
-                                    },
-                                    "count": {
-                                        "type": "integer"
-                                    }
-                                },
-                                "type": "object",
-                                "example": {
-                                    "page": 1,
-                                    "count": 1
-                                }
-                            }
-                        }
+                "operationId": "5deeb4504b9c58203f4c0613adc75838",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "頁碼",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "count",
+                        "in": "query",
+                        "description": "每頁筆數",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 5
                     }
-                },
+                ],
                 "responses": {
                     "200": {
                         "description": "請求成功。",
                         "content": {
                             "application/json": {
-                                "example": {
-                                    "data": [
-                                        {
-                                            "code": "A",
-                                            "name": "臺北市"
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "code": {
+                                                        "type": "string"
+                                                    },
+                                                    "name": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "statusCode": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "countOfData": {
+                                            "type": "integer"
+                                        },
+                                        "countOfPage": {
+                                            "type": "integer"
                                         }
-                                    ],
-                                    "statusCode": 200,
-                                    "message": "請求成功。",
-                                    "countOfData": 22,
-                                    "countOfPage": 22
+                                    },
+                                    "type": "object"
                                 }
                             }
                         }
@@ -170,13 +241,13 @@
             }
         },
         "/api/counties/{countyCode}/towns": {
-            "post": {
+            "get": {
                 "tags": [
                     "縣市、鄉鎮市區"
                 ],
                 "summary": "鄉鎮市區",
                 "description": "查詢此縣市所擁有的鄉鎮市區資料。",
-                "operationId": "35ee5eba3f5f14f7faf81d59c3915918",
+                "operationId": "33ca2a3607b601f026e49c04777ba3fb",
                 "parameters": [
                     {
                         "name": "countyCode",
@@ -187,46 +258,66 @@
                             "type": "string",
                             "default": "A"
                         }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "頁碼",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "count",
+                        "in": "query",
+                        "description": "每頁筆數",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 10
                     }
                 ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "properties": {
-                                    "page": {
-                                        "type": "integer"
-                                    },
-                                    "count": {
-                                        "type": "integer"
-                                    }
-                                },
-                                "type": "object",
-                                "example": {
-                                    "page": 1,
-                                    "count": 1
-                                }
-                            }
-                        }
-                    }
-                },
                 "responses": {
                     "200": {
                         "description": "請求成功。",
                         "content": {
                             "application/json": {
-                                "example": {
-                                    "data": [
-                                        {
-                                            "code": "A01",
-                                            "name": "松山區",
-                                            "county_code": "A"
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "code": {
+                                                        "type": "string"
+                                                    },
+                                                    "name": {
+                                                        "type": "string"
+                                                    },
+                                                    "county_code": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "statusCode": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "countOfData": {
+                                            "type": "integer"
+                                        },
+                                        "countOfPage": {
+                                            "type": "integer"
                                         }
-                                    ],
-                                    "statusCode": 200,
-                                    "message": "請求成功。",
-                                    "countOfData": 12,
-                                    "countOfPage": 12
+                                    },
+                                    "type": "object"
                                 }
                             }
                         }
@@ -235,65 +326,89 @@
             }
         },
         "/api/notifying_agencies/{id}": {
-            "post": {
+            "get": {
                 "tags": [
                     "通報機關地圖"
                 ],
                 "summary": "通報機關",
                 "description": "查詢單筆或多筆的通報機關。",
-                "operationId": "123085e86154b64ac34adfca9dd020bc",
+                "operationId": "d93d13935e46c66168ad1998161f379d",
                 "parameters": [
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "若想要查詢單筆，請帶入機關編碼，查多筆可不帶0，這裡是因為Swagger不帶值會預設給空白。",
+                        "description": "若想要查詢單筆，請帶入機關編碼，查多筆可不帶，這裡是因為Swagger不帶值會預設給空白。",
                         "required": false,
                         "schema": {
                             "type": "integer",
                             "default": 0
                         }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "頁碼",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "count",
+                        "in": "query",
+                        "description": "每頁筆數",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 10
                     }
                 ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "properties": {
-                                    "page": {
-                                        "type": "integer"
-                                    },
-                                    "count": {
-                                        "type": "integer"
-                                    }
-                                },
-                                "type": "object",
-                                "example": {
-                                    "page": 1,
-                                    "count": 1
-                                }
-                            }
-                        }
-                    }
-                },
                 "responses": {
                     "200": {
                         "description": "請求成功。",
                         "content": {
                             "application/json": {
-                                "example": {
-                                    "data": [
-                                        {
-                                            "id": 1,
-                                            "agency_name": "勞動部職業安全衛生署北區職業安全衛生中心",
-                                            "address": "24219 新北市新莊區中平路439號南棟9樓",
-                                            "notified_hotline_at_work": "02-89956720",
-                                            "notified_hotline_off_work": "02-89956720"
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer"
+                                                    },
+                                                    "agency_name": {
+                                                        "type": "string"
+                                                    },
+                                                    "address": {
+                                                        "type": "string"
+                                                    },
+                                                    "notified_hotline_at_work": {
+                                                        "type": "string"
+                                                    },
+                                                    "notified_hotline_off_work": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "statusCode": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "countOfData": {
+                                            "type": "integer"
+                                        },
+                                        "countOfPage": {
+                                            "type": "integer"
                                         }
-                                    ],
-                                    "statusCode": 200,
-                                    "message": "請求成功。",
-                                    "countOfData": 17,
-                                    "countOfPage": 17
+                                    },
+                                    "type": "object"
                                 }
                             }
                         }
@@ -302,13 +417,13 @@
             }
         },
         "/api/notifying_agencies/{na_id}/jurisdiction_regions": {
-            "post": {
+            "get": {
                 "tags": [
                     "通報機關地圖"
                 ],
                 "summary": "管轄區",
                 "description": "查詢通報機關所管轄的區域。",
-                "operationId": "d655a564a8a99e38ceb79e42bf4645dc",
+                "operationId": "b79f74da3797576778d8a1ddbc328ffa",
                 "parameters": [
                     {
                         "name": "na_id",
@@ -319,46 +434,66 @@
                             "type": "integer",
                             "default": 1
                         }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "頁碼",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "count",
+                        "in": "query",
+                        "description": "每頁筆數",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 10
                     }
                 ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "properties": {
-                                    "page": {
-                                        "type": "integer"
-                                    },
-                                    "count": {
-                                        "type": "integer"
-                                    }
-                                },
-                                "type": "object",
-                                "example": {
-                                    "page": 1,
-                                    "count": 1
-                                }
-                            }
-                        }
-                    }
-                },
                 "responses": {
                     "200": {
                         "description": "請求成功。",
                         "content": {
                             "application/json": {
-                                "example": {
-                                    "data": [
-                                        {
-                                            "id": 1,
-                                            "na_id": 1,
-                                            "region": "新北市"
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer"
+                                                    },
+                                                    "na_id": {
+                                                        "type": "integer"
+                                                    },
+                                                    "region": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "statusCode": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "countOfData": {
+                                            "type": "integer"
+                                        },
+                                        "countOfPage": {
+                                            "type": "integer"
                                         }
-                                    ],
-                                    "statusCode": 200,
-                                    "message": "請求成功。",
-                                    "countOfData": 17,
-                                    "countOfPage": 17
+                                    },
+                                    "type": "object"
                                 }
                             }
                         }
@@ -378,27 +513,31 @@
                     "content": {
                         "application/json": {
                             "schema": {
+                                "required": [
+                                    "account",
+                                    "password",
+                                    "username",
+                                    "email"
+                                ],
                                 "properties": {
                                     "account": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "example": "m001"
                                     },
                                     "password": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "example": "p@ssW0rD"
                                     },
                                     "username": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "example": "m001Name"
                                     },
                                     "email": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "example": "m001@gmail.com"
                                     }
                                 },
-                                "type": "object",
-                                "example": {
-                                    "account": "m01",
-                                    "password": "p@ssW0rD",
-                                    "username": "m01Name",
-                                    "email": "m01@gmail.com"
-                                }
+                                "type": "object"
                             }
                         }
                     }
@@ -408,15 +547,30 @@
                         "description": "建立資料成功。",
                         "content": {
                             "application/json": {
-                                "example": [
-                                    {
-                                        "data": [],
-                                        "statusCode": 201,
-                                        "message": "建立資料成功。",
-                                        "countOfData": 0,
-                                        "countOfPage": 0
-                                    }
-                                ]
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "object"
+                                        },
+                                        "statusCode": {
+                                            "type": "integer",
+                                            "example": 201
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "建立資料成功。"
+                                        },
+                                        "countOfData": {
+                                            "type": "integer",
+                                            "example": 0
+                                        },
+                                        "countOfPage": {
+                                            "type": "integer",
+                                            "example": 0
+                                        }
+                                    },
+                                    "type": "object"
+                                }
                             }
                         }
                     }

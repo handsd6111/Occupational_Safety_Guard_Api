@@ -16,40 +16,59 @@ interface Auth extends Info
      *         @OA\MediaType(
      *             mediaType="application/json",
      *             @OA\Schema(
+     *                 required={"account", "password"},
      *                 @OA\Property(
      *                     property="account",
-     *                     type="string"
+     *                     type="string",
+     *                     example="test"
      *                 ),
      *                 @OA\Property(
      *                     property="password",
-     *                     type="string"
+     *                     type="string",
+     *                     example="testtest"
      *                 ),
-     *                 example=
-     *                 {
-     *                      "account": "test", 
-     *                      "password": "testtest"
-     *                 }
      *             )
      *         )
      *     ),
      *     @OA\Response(
      *          response=200, 
      *          description="請求成功。",
-     *          content={
-     *              @OA\MediaType(
-     *                  mediaType="application/json",
-     *                  example= {
-     *                      "data": {
-     *                          "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJvc2dhX2FwaSIsImlhdCI6MTY5MTIxODI5OSwibmJmIjoxNjkxMjE4Mjk5LCJleHAiOjE2OTEyMTg0NzksInVzZXJJZCI6NiwidXNlckFjY291bnQiOiJ0ZXN0IiwidXNlckVtYWlsIjoidGVzdEBnbWFpbC5jb20iLCJ1c2VyTmFtZSI6InRlc3QiLCJ1c2VyUm9sZXMiOlsidXNlciJdfQ.tIDrkKMuG7nWxSJUlTlYuMFje3RDMaq13gAI9U6M9r19fW916dduEcAl1aHep5D22_LhmYiGSysknfz5ni9vlO5g_zo3D8aJ_IC3v02ZQj_XTZ006eRFUWYiW8qzYCEJKEkF9AMFGw5_lH3ofM6mBnommJBbrV5ufbSy1CTggkajNcELhsjtKsz9rRF3xASON1Sq-9oouMbOw8XkYHzTJKoIlAE5XLf_6gJXCZEBcMC_oE1kcliR42LMiqkD_fGqfrBfOCfUdd8xkTBTlW1xUoa2wt8_-BcVo0hvLHvolnzDZ5ww8zmib6_2z9zpI4HuSpOvQLsRzLHBnjsBegMpkA",
-     *                          "refresh_token": "99d0be99-9ca4-4283-8b22-37046bf3de22"
-     *                      },
-     *                      "statusCode": 200,
-     *                      "message": "請求成功。",
-     *                      "countOfData": 0,
-     *                      "countOfPage": 0
-     *                  }
+     *          @OA\JsonContent(
+     *              @OA\Property(
+     *                  property="data",
+     *                  type="object",
+     *                  @OA\Property(
+     *                      property="access_token",
+     *                      type="string",
+     *                      example="eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9..."
+     *                  ),
+     *                  @OA\Property(
+     *                      property="refresh_token",
+     *                      type="string",
+     *                      example="99d0be99-9ca4-4283-8b22-37046bf3de22"
+     *                  )
      *              ),
-     *          }
+     *              @OA\Property(
+     *                  property="statusCode",
+     *                  type="integer",
+     *                  example=200
+     *              ),
+     *              @OA\Property(
+     *                  property="message",
+     *                  type="string",
+     *                  example="請求成功。"
+     *              ),
+     *              @OA\Property(
+     *                  property="countOfData",
+     *                  type="integer",
+     *                  example=0
+     *              ),
+     *              @OA\Property(
+     *                  property="countOfPage",
+     *                  type="integer",
+     *                  example=0
+     *              )
+     *          )
      *     )
      * )
      */
@@ -66,35 +85,54 @@ interface Auth extends Info
      *         @OA\MediaType(
      *             mediaType="application/json",
      *             @OA\Schema(
+     *                 required={"refresh_token"},
      *                 @OA\Property(
      *                     property="refresh_token",
-     *                     type="string"
-     *                 ),
-     *                 example=
-     *                 {
-     *                      "refresh_token": "99d0bf9c-280f-4ad6-a14f-dab6b579f047",
-     *                 }
+     *                     type="string",
+     *                     example="99d0bf9c-280f-4ad6-a14f-dab6b579f047"
+     *                 )
      *             )
      *         )
      *     ),
      *     @OA\Response(
-     *          response=200, 
-     *          description="請求成功。",
-     *          content={
-     *              @OA\MediaType(
-     *                  mediaType="application/json",
-     *                  example= {
-     *                      "data": {
-     *                          "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJvc2dhX2FwaSIsImlhdCI6MTY5MTIxODI5OSwibmJmIjoxNjkxMjE4Mjk5LCJleHAiOjE2OTEyMTg0NzksInVzZXJJZCI6NiwidXNlckFjY291bnQiOiJ0ZXN0IiwidXNlckVtYWlsIjoidGVzdEBnbWFpbC5jb20iLCJ1c2VyTmFtZSI6InRlc3QiLCJ1c2VyUm9sZXMiOlsidXNlciJdfQ.tIDrkKMuG7nWxSJUlTlYuMFje3RDMaq13gAI9U6M9r19fW916dduEcAl1aHep5D22_LhmYiGSysknfz5ni9vlO5g_zo3D8aJ_IC3v02ZQj_XTZ006eRFUWYiW8qzYCEJKEkF9AMFGw5_lH3ofM6mBnommJBbrV5ufbSy1CTggkajNcELhsjtKsz9rRF3xASON1Sq-9oouMbOw8XkYHzTJKoIlAE5XLf_6gJXCZEBcMC_oE1kcliR42LMiqkD_fGqfrBfOCfUdd8xkTBTlW1xUoa2wt8_-BcVo0hvLHvolnzDZ5ww8zmib6_2z9zpI4HuSpOvQLsRzLHBnjsBegMpkA",
-     *                          "refresh_token": "99d0be99-9ca4-4283-8b22-37046bf3de22"
-     *                      },
-     *                      "statusCode": 200,
-     *                      "message": "請求成功。",
-     *                      "countOfData": 0,
-     *                      "countOfPage": 0
-     *                  }
-     *              ),
-     *          }
+     *         response=200, 
+     *         description="請求成功。",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="data",
+     *                 type="object",
+     *                 @OA\Property(
+     *                     property="access_token",
+     *                     type="string",
+     *                     example="eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9..."
+     *                 ),
+     *                 @OA\Property(
+     *                     property="refresh_token",
+     *                     type="string",
+     *                     example="99d0be99-9ca4-4283-8b22-37046bf3de22"
+     *                 )
+     *             ),
+     *             @OA\Property(
+     *                 property="statusCode",
+     *                 type="integer",
+     *                 example=200
+     *             ),
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 example="請求成功。"
+     *             ),
+     *             @OA\Property(
+     *                 property="countOfData",
+     *                 type="integer",
+     *                 example=0
+     *             ),
+     *             @OA\Property(
+     *                 property="countOfPage",
+     *                 type="integer",
+     *                 example=0
+     *             )
+     *         )
      *     )
      * )
      */

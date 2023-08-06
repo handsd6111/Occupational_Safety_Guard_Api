@@ -39,12 +39,12 @@ Route::prefix('auth')->group(function () {
 
 // Route::middleware(['auth:user', CustomPreValidate::class])->group(function () {
     Route::prefix('notifying_agencies')->group(function () {
-        Route::post('/{id?}', [NotifyingAgencyController::class, 'getNotifyingAgencies']);
-        Route::post('{na_id}/jurisdiction_regions', [NotifyingAgencyController::class, 'getJurisdictionRegions']);
+        Route::get('/{id?}', [NotifyingAgencyController::class, 'getNotifyingAgencies']);
+        Route::get('{na_id}/jurisdiction_regions', [NotifyingAgencyController::class, 'getJurisdictionRegions']);
     });
     Route::prefix('counties')->group(function () {
-        Route::post('', [CountyController::class, 'getCounty']);
-        Route::post('/{county_code}/towns', [CountyController::class, 'getTown']);
+        Route::get('', [CountyController::class, 'getCounty']);
+        Route::get('/{county_code}/towns', [CountyController::class, 'getTown']);
     });
 // });
 
