@@ -325,6 +325,88 @@
                 }
             }
         },
+        "/api/industries/{code}": {
+            "get": {
+                "tags": [
+                    "行業別"
+                ],
+                "summary": "行業別",
+                "description": "查詢多筆或單筆的行業別資料",
+                "operationId": "0fc036346f3223ce04df2a9cf5076b76",
+                "parameters": [
+                    {
+                        "name": "code",
+                        "in": "path",
+                        "description": "行業別編號",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "A"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "頁碼(查單筆可不帶)",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "count",
+                        "in": "query",
+                        "description": "每頁筆數(查單筆可不帶)",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 5
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "請求成功。",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "code": {
+                                                        "type": "string"
+                                                    },
+                                                    "name": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "statusCode": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "countOfData": {
+                                            "type": "integer"
+                                        },
+                                        "countOfPage": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/notifying_agencies/{id}": {
             "get": {
                 "tags": [

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CountyController;
+use App\Http\Controllers\IndustryController;
 use App\Http\Controllers\NotifyingAgencyController;
 use App\Http\Controllers\TokenController;
 use App\Http\Controllers\UserController;
@@ -37,7 +38,7 @@ Route::prefix('auth')->group(function () {
     Route::post('refresh_token', [AuthController::class, 'refreshToken']);
 });
 
-// Route::middleware(['auth:user', CustomPreValidate::class])->group(function () {
+Route::middleware(['auth:user', CustomPreValidate::class])->group(function () {
     Route::prefix('notifying_agencies')->group(function () {
         Route::get('/{id?}', [NotifyingAgencyController::class, 'getNotifyingAgencies']);
         Route::get('{na_id}/jurisdiction_regions', [NotifyingAgencyController::class, 'getJurisdictionRegions']);
@@ -46,7 +47,11 @@ Route::prefix('auth')->group(function () {
         Route::get('', [CountyController::class, 'getCounty']);
         Route::get('/{county_code}/towns', [CountyController::class, 'getTown']);
     });
-// });
+    Route::prefix('industries')->group(function () {
+        Route::get('/{code}', [IndustryController::class, 'getIndustry'])->withoutMiddleware(CustomPreValidate::class);
+        Route::get('', [IndustryController::class, 'getIndustry']);
+    });
+});
 
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
