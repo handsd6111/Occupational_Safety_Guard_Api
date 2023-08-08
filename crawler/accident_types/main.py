@@ -25,7 +25,7 @@ driver.set_window_size(1920, 1080)  # 無頭設定視窗大小才不會有錯誤
 driver.maximize_window()  # 同上
 
 
-class DisasterType:
+class AccidentType:
     # 建構式
     def __init__(self, code, name):
         self.code = code  # 行業代碼
@@ -36,9 +36,9 @@ driver.get(url)  # 訪問URL
 # print(driver.page_source)
 driver.find_element(By.ID, 'btndisnotify').click()
 
-disasterSelect = driver.find_element(By.ID, 'a_DT_code')  # 資料分成兩堆
-# print(disasterSelect)
-optionList = disasterSelect.find_elements(By.TAG_NAME, 'option')
+accidentSelect = driver.find_element(By.ID, 'a_DT_code')  # 資料分成兩堆
+# print(accidentSelect)
+optionList = accidentSelect.find_elements(By.TAG_NAME, 'option')
 
 for index, option in enumerate(optionList):
     if index == 0:
@@ -48,17 +48,17 @@ for index, option in enumerate(optionList):
     splitOptionText = option.text.split(') ')
     code = splitOptionText[0][1:]
     name = splitOptionText[1]
-    disasterType = DisasterType(code, name)
-    disasterTypeDict = disasterType.__dict__
+    accidentType = AccidentType(code, name)
+    accidentTypeDict = accidentType.__dict__
     primaryKeys = ['code']
-    values = [disasterType.code]
-    columns = list(disasterTypeDict.keys())
-    datas = list(disasterTypeDict.values())
+    values = [accidentType.code]
+    columns = list(accidentTypeDict.keys())
+    datas = list(accidentTypeDict.values())
     # SQL
-    if (checkRowIsExists('disaster_types', primaryKeys, values)):  # 確認是否有此筆資料，有此筆
-        execSql(updateOneRow('disaster_types',
+    if (checkRowIsExists('accident_types', primaryKeys, values)):  # 確認是否有此筆資料，有此筆
+        execSql(updateOneRow('accident_types',
                 columns, datas, primaryKeys, values))  # 更新資料
     else:  # 沒有此筆資料
-        execSql(insertOneRow('disaster_types', columns, datas))  # 則寫入
+        execSql(insertOneRow('accident_types', columns, datas))  # 則寫入
 
 print('執行成功')

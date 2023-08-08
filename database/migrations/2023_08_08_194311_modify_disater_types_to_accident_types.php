@@ -11,7 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('disaster_types', function (Blueprint $table) {
+        Schema::dropIfExists('disaster_types');
+
+        Schema::create('accident_types', function (Blueprint $table) {
             $table->char('code', 4)->primary()->comment('災害類型編號');
             $table->char('name', 35)->comment('災害類型名稱');
         });
@@ -22,6 +24,11 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('disaster_types');
+        Schema::dropIfExists('accident_types');
+
+        Schema::create('disaster_types', function (Blueprint $table) {
+            $table->char('code', 4)->primary()->comment('災害類型編號');
+            $table->char('name', 35)->comment('災害類型名稱');
+        });
     }
 };
