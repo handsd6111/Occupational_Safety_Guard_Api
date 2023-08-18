@@ -51,16 +51,32 @@ for index, tr in enumerate(trList):
     na_id = execSql("SELECT id FROM `notifying_agencies` WHERE `agency_name`='{agency_name}'".format(
         agency_name=agency_name)).fetchone()[0]
     
+    # 管轄區
     regions = tdList[3].text.split("、")  # 分割管轄區
     for region in regions:
         region = region.split('\n(')[0]  # 消除 (公告授權) 的字句
-        columns = ['na_id', 'region']  # jurisdiction_regions的欄位
-        datas = [na_id.__str__(), region]  # jurisdiction_regions的資料
-        primaryKeys = ['region']  # 此表的主鍵等同於所有欄位，直接賦值
-        values = [region]  # 此表的主鍵等同於所有欄位，直接賦值
+        columns = ['region']  # jurisdiction_regions的欄位
+        datas = [region]  # jurisdiction_regions的資料
+        primaryKeys = columns  # 此表的主鍵等同於所有欄位，直接賦值
+        values = datas  # 此表的主鍵等同於所有欄位，直接賦值
 
         # SQL
         if(checkRowIsExists('jurisdiction_regions', primaryKeys, values)): # 確認是否有此筆資料，有此筆
             execSql(updateOneRow('jurisdiction_regions', columns, datas, primaryKeys, values)) # 更新資料
         else: # 沒有此筆資料
             execSql(insertOneRow('jurisdiction_regions', columns, datas)) # 則寫入
+
+        # 取得此notifying_agency的id
+        jr_id = execSql("SELECT id FROM `jurisdiction_regions` WHERE `region`='{region}'".format(
+            region=region)).fetchone()[0]
+
+        columns = ['na_id', 'jr_id'] 
+        datas = [na_id.__str__(), jr_id.__str__()]
+        primaryKeys = columns  # 此表的主鍵等同於所有欄位，直接賦值
+        values = datas  # 此表的主鍵等同於所有欄位，直接賦值
+        
+        # SQL
+        if(checkRowIsExists('notifying_agency_regions', primaryKeys, values)): # 確認是否有此筆資料，有此筆
+            execSql(updateOneRow('notifying_agency_regions', columns, datas, primaryKeys, values)) # 更新資料
+        else: # 沒有此筆資料
+            execSql(insertOneRow('notifying_agency_regions', columns, datas)) # 則寫入

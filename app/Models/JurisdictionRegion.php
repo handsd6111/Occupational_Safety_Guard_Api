@@ -9,8 +9,9 @@ class JurisdictionRegion extends Model
 {
     use HasFactory;
     
-    public function notifyingAgency()
-    {
-        return $this->belongsTo(NotifyingAgency::class);
-    }
+
+    // public function notifyingAgency()
+    // {
+    //     return $this->belongsTo(NotifyingAgency::class);
+    // }
 }

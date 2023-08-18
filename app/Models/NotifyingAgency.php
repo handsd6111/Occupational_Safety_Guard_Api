@@ -11,7 +11,7 @@ class NotifyingAgency extends Model
 
     public $timestamps = false;
     
-    public function jurisdictionRegions() {
-        return $this->hasMany(JurisdictionRegion::class, 'na_id', 'id');
-    }
+    // public function jurisdictionRegions() {
+    //     return $this->hasMany(JurisdictionRegion::class, 'na_id', 'id');
+    // }
 }

@@ -498,19 +498,91 @@
                 }
             }
         },
-        "/api/notifying_agencies/{na_id}/jurisdiction_regions": {
+        "/api/jurisdiction_regions": {
             "get": {
                 "tags": [
                     "通報機關地圖"
                 ],
                 "summary": "管轄區",
-                "description": "查詢通報機關所管轄的區域。",
-                "operationId": "b79f74da3797576778d8a1ddbc328ffa",
+                "description": "查詢所有管轄區",
+                "operationId": "347468a3c026c6a94a1427b9b0f7a82b",
                 "parameters": [
                     {
-                        "name": "na_id",
+                        "name": "page",
+                        "in": "query",
+                        "description": "頁碼",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "count",
+                        "in": "query",
+                        "description": "每頁筆數",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 10
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "請求成功。",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer"
+                                                    },
+                                                    "region": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "statusCode": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "countOfData": {
+                                            "type": "integer"
+                                        },
+                                        "countOfPage": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/jurisdiction_regions/{jr_id}/notifying_agencies": {
+            "get": {
+                "tags": [
+                    "通報機關地圖"
+                ],
+                "summary": "指定管轄區之通報機關",
+                "description": "利用管轄區查詢通報機關",
+                "operationId": "2f04df870ed7f131cb4ec9cf2c2c039a",
+                "parameters": [
+                    {
+                        "name": "jr_id",
                         "in": "path",
-                        "description": "欲查詢哪一筆通報機關的管轄區，帶入通報機關的id。",
+                        "description": "帶入管轄區的id",
                         "required": true,
                         "schema": {
                             "type": "integer",
@@ -552,10 +624,16 @@
                                                     "id": {
                                                         "type": "integer"
                                                     },
-                                                    "na_id": {
-                                                        "type": "integer"
+                                                    "agency_name": {
+                                                        "type": "string"
                                                     },
-                                                    "region": {
+                                                    "address": {
+                                                        "type": "string"
+                                                    },
+                                                    "notified_hotline_at_work": {
+                                                        "type": "string"
+                                                    },
+                                                    "notified_hotline_off_work": {
                                                         "type": "string"
                                                     }
                                                 },

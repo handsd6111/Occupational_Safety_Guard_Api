@@ -93,12 +93,74 @@ interface NotifyingAgency extends Info
     /**
      * @OA\Get(
      *     tags={"通報機關地圖"},
-     *     path="/api/notifying_agencies/{na_id}/jurisdiction_regions",
+     *     path="/api/jurisdiction_regions",
      *     summary="管轄區",
-     *     description="查詢通報機關所管轄的區域。",
+     *     description="查詢所有管轄區",
      *     @OA\Parameter(
-     *          name="na_id",
-     *          description="欲查詢哪一筆通報機關的管轄區，帶入通報機關的id。",
+     *         name="page",
+     *         in="query",
+     *         description="頁碼",
+     *         required=true,
+     *         @OA\Schema(type="integer"),
+     *         example=1  
+     *     ),
+     *     @OA\Parameter(
+     *         name="count",
+     *         in="query",
+     *         description="每頁筆數",
+     *         required=true,
+     *         @OA\Schema(type="integer"),
+     *         example=10 
+     *     ),
+     *     @OA\Response(
+     *         response=200, 
+     *         description="請求成功。",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="data",
+     *                 type="array",
+     *                 @OA\Items(
+     *                     @OA\Property(
+     *                         property="id",
+     *                         type="integer"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="region",
+     *                         type="string"
+     *                     )
+     *                 )
+     *             ),
+     *             @OA\Property(
+     *                 property="statusCode",
+     *                 type="integer"
+     *             ),
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="countOfData",
+     *                 type="integer"
+     *             ),
+     *             @OA\Property(
+     *                 property="countOfPage",
+     *                 type="integer"
+     *             )
+     *         )
+     *     )
+     * )
+     */
+    public function getJurisdictionRegions(Request $request, int $na_id);
+
+    /**
+     * @OA\Get(
+     *     tags={"通報機關地圖"},
+     *     path="/api/jurisdiction_regions/{jr_id}/notifying_agencies",
+     *     summary="指定管轄區之通報機關",
+     *     description="利用管轄區查詢通報機關",
+     *     @OA\Parameter(
+     *          name="jr_id",
+     *          description="帶入管轄區的id",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
@@ -135,11 +197,19 @@ interface NotifyingAgency extends Info
      *                         type="integer"
      *                     ),
      *                     @OA\Property(
-     *                         property="na_id",
-     *                         type="integer"
+     *                         property="agency_name",
+     *                         type="string"
      *                     ),
      *                     @OA\Property(
-     *                         property="region",
+     *                         property="address",
+     *                         type="string"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="notified_hotline_at_work",
+     *                         type="string"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="notified_hotline_off_work",
      *                         type="string"
      *                     )
      *                 )
@@ -164,5 +234,5 @@ interface NotifyingAgency extends Info
      *     )
      * )
      */
-    public function getJurisdictionRegions(Request $request, int $na_id);
+    public function getNotifyingAgenciesByJrId(Request $request, int $jr_id);
 }

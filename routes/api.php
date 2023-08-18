@@ -28,8 +28,13 @@ Route::prefix('auth')->group(function () {
 Route::middleware([CustomPreValidate::class])->group(function () {
     Route::prefix('notifying_agencies')->group(function () {
         Route::get('/{id?}', [NotifyingAgencyController::class, 'getNotifyingAgencies']);
-        Route::get('{na_id?}/jurisdiction_regions', [NotifyingAgencyController::class, 'getJurisdictionRegions']);
     });
+
+    Route::prefix('jurisdiction_regions')->group(function () {
+        Route::get('', [NotifyingAgencyController::class, 'getJurisdictionRegions']);
+        Route::get('{jr_id}/notifying_agencies', [NotifyingAgencyController::class, 'getNotifyingAgenciesByJrId']);
+    });
+
     Route::prefix('counties')->group(function () {
         Route::get('', [CountyController::class, 'getCounty']);
         Route::get('/{county_code}/towns', [CountyController::class, 'getTown']);
