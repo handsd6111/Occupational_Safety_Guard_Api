@@ -28,7 +28,7 @@ Route::prefix('auth')->group(function () {
 Route::middleware([CustomPreValidate::class])->group(function () {
     Route::prefix('notifying_agencies')->group(function () {
         Route::get('/{id?}', [NotifyingAgencyController::class, 'getNotifyingAgencies']);
-        Route::get('{na_id}/jurisdiction_regions', [NotifyingAgencyController::class, 'getJurisdictionRegions']);
+        Route::get('{na_id?}/jurisdiction_regions', [NotifyingAgencyController::class, 'getJurisdictionRegions']);
     });
     Route::prefix('counties')->group(function () {
         Route::get('', [CountyController::class, 'getCounty']);

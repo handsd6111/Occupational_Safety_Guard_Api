@@ -11,4 +11,5 @@ class Industry extends Model
     
     protected $primaryKey = 'code';
     protected $keyType = 'string';
+    public $timestamps = false;
 }
