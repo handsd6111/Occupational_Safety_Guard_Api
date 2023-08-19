@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CountyController;
 use App\Http\Controllers\IndustryController;
+use App\Http\Controllers\MajorOccupationalAccidentController;
 use App\Http\Controllers\NotifyingAgencyController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\CustomPreValidate;
@@ -43,4 +44,11 @@ Route::middleware([CustomPreValidate::class])->group(function () {
         Route::get('', [IndustryController::class, 'getIndustry']);
         Route::get('/{code}', [IndustryController::class, 'getIndustry'])->withoutMiddleware(CustomPreValidate::class);
     });
+
+    Route::prefix('major_occupational_accidents')->group(function () {
+        Route::get('', [MajorOccupationalAccidentController::class, 'getMajorOccupationalAccidents']);
+    });
+
+    Route::get('accident_type_statistics', [MajorOccupationalAccidentController::class, 'getAccidentTypeStatistics'])->withoutMiddleware(CustomPreValidate::class);
+    Route::get('industry_statistics', [MajorOccupationalAccidentController::class, 'getIndustryStatistics'])->withoutMiddleware(CustomPreValidate::class);
 });

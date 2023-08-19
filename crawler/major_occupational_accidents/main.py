@@ -18,7 +18,7 @@ chrome_options.add_argument(
 s = Service(r"./tools/chromedriver.exe")
 
 url = 'https://pacs.osha.gov.tw/2875/?Page=1&PageSize=99999'
-# url = 'https://pacs.osha.gov.tw/2875/?Page=2&PageSize=241'
+# url = 'https://pacs.osha.gov.tw/2875/?Page=1&PageSize=10'
 
 driver = webdriver.Chrome(service=s,
                           options=chrome_options)  # 套用設定
@@ -64,7 +64,7 @@ for accident in accidentList:
         notifying_agency = '國家科學及技術委員會中部科學園區管理局'
     if (notifying_agency == '南部科學園區管理局'):
         notifying_agency = '國家科學及技術委員會南部科學園區管理局'
-    if(notifying_agency == ''):
+    if (notifying_agency == ''):
         notifying_agency = '無'
     notifying_agencyId = execSql("SELECT `id` FROM `notifying_agencies` WHERE agency_name='{notifying_agency}'"
                                  .format(notifying_agency=notifying_agency)).fetchone()[0]
@@ -72,13 +72,16 @@ for accident in accidentList:
                            .format(industry=_industry[0])).fetchone()[0]
     accident_typeCode = execSql("SELECT code FROM `accident_types` WHERE name='{accident_type}'"
                                 .format(accident_type=listgropup01[1].text.split('：')[1])).fetchone()[0]
+    occurrenceDateSplit = listgropup01[2].text.split('：')[1].split('/')
+    occurrenceDate = str(int(occurrenceDateSplit[0]) + 1911) + \
+        '-' + occurrenceDateSplit[1] + '-' + occurrenceDateSplit[2]
     moa = MajorOccupationalAccident(
         business_unit=accident.find_element(
             By.CLASS_NAME, 'business_unit').text.split('：')[1],
         industry=industryCode,
         detail_of_industry=_industry[1][:-1],
         accident_type=accident_typeCode,
-        occurrence_date=listgropup01[2].text.split('：')[1],
+        occurrence_date=occurrenceDate,
         number_of_victims=listgropup01[3].text.split('：')[1],
         business_owner=listgropup01[4].text.split('：')[1],
         project_name=listgropup02[0].text.split('工程名稱')[1],
@@ -92,13 +95,15 @@ for accident in accidentList:
     values = [moa.business_unit, moa.occurrence_date, moa.project_name]
     columns = list(moaDict.keys())
     datas = list(moaDict.values())
+    index += 1
     # SQL
     if (checkRowIsExists('major_occupational_accidents', primaryKeys, values)):  # 確認是否有此筆資料，有此筆
         execSql(updateOneRow('major_occupational_accidents',
                 columns, datas, primaryKeys, values))  # 更新資料
+        print('更新第{i}筆'.format(i=index))
     else:  # 沒有此筆資料
         execSql(insertOneRow('major_occupational_accidents', columns, datas))  # 則寫入
-    index += 1
-    print('寫入第{i}筆'.format(i=index))
+        print('寫入第{i}筆'.format(i=index))
+
 
 print('執行成功')

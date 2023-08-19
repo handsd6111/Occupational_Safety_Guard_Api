@@ -407,6 +407,322 @@
                 }
             }
         },
+        "/api/major_occupational_accidents": {
+            "get": {
+                "tags": [
+                    "歷年重大職災資訊"
+                ],
+                "summary": "重大職災查詢",
+                "description": "查詢全部或指定條件之重大職災資訊",
+                "operationId": "ea9eeb688bc54bb33ac1a719fe844d3c",
+                "parameters": [
+                    {
+                        "name": "industryCode",
+                        "in": "query",
+                        "description": "指定行業別",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "F"
+                    },
+                    {
+                        "name": "accidentTypeCode",
+                        "in": "query",
+                        "description": "指定災害類型",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "0004"
+                    },
+                    {
+                        "name": "notifyingAgencyId",
+                        "in": "query",
+                        "description": "指定通報機關",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 9
+                    },
+                    {
+                        "name": "startOccurrenceDate",
+                        "in": "query",
+                        "description": "開始發生日期",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "2019-04-20"
+                    },
+                    {
+                        "name": "endOccurrenceDate",
+                        "in": "query",
+                        "description": "結束發生日期",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "2021-04-20"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "頁碼",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "count",
+                        "in": "query",
+                        "description": "每頁筆數",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 10
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "請求成功。",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer"
+                                                    },
+                                                    "business_unit": {
+                                                        "type": "string"
+                                                    },
+                                                    "detail_of_industry": {
+                                                        "type": "string"
+                                                    },
+                                                    "occurrence_date": {
+                                                        "type": "string"
+                                                    },
+                                                    "number_of_victims": {
+                                                        "type": "integer"
+                                                    },
+                                                    "project_name": {
+                                                        "type": "string"
+                                                    },
+                                                    "accident_address": {
+                                                        "type": "string"
+                                                    },
+                                                    "accident_location": {
+                                                        "type": "string"
+                                                    },
+                                                    "business_owner": {
+                                                        "type": "string"
+                                                    },
+                                                    "notifying_agency": {
+                                                        "type": "integer"
+                                                    },
+                                                    "industry": {
+                                                        "type": "string"
+                                                    },
+                                                    "accident_type": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "statusCode": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "countOfData": {
+                                            "type": "integer"
+                                        },
+                                        "countOfPage": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/accident_type_statistics": {
+            "get": {
+                "tags": [
+                    "歷年重大職災資訊"
+                ],
+                "summary": "行業統計",
+                "description": "統計單個行業別的所有災害類型",
+                "operationId": "592ba2c04078947fa386b4150297c48a",
+                "parameters": [
+                    {
+                        "name": "industryCode",
+                        "in": "query",
+                        "description": "指定行業別",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "F"
+                    },
+                    {
+                        "name": "startOccurrenceDate",
+                        "in": "query",
+                        "description": "開始發生日期",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "2019-04-20"
+                    },
+                    {
+                        "name": "endOccurrenceDate",
+                        "in": "query",
+                        "description": "結束發生日期",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "2021-04-20"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "請求成功。",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "accident_type": {
+                                                        "type": "string"
+                                                    },
+                                                    "count_of_accident_type": {
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "statusCode": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "countOfData": {
+                                            "type": "integer"
+                                        },
+                                        "countOfPage": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/industry_statistics": {
+            "get": {
+                "tags": [
+                    "歷年重大職災資訊"
+                ],
+                "summary": "災害類型統計",
+                "description": "統計單個災害類型的所有行業別",
+                "operationId": "fb51b11354c737e71347c62ab3950e35",
+                "parameters": [
+                    {
+                        "name": "accidentTypeCode",
+                        "in": "query",
+                        "description": "指定災害類型",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "0001"
+                    },
+                    {
+                        "name": "startOccurrenceDate",
+                        "in": "query",
+                        "description": "開始發生日期",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "2019-04-20"
+                    },
+                    {
+                        "name": "endOccurrenceDate",
+                        "in": "query",
+                        "description": "結束發生日期",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "2021-04-20"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "請求成功。",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "industry": {
+                                                        "type": "string"
+                                                    },
+                                                    "count_of_industry": {
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "statusCode": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "countOfData": {
+                                            "type": "integer"
+                                        },
+                                        "countOfPage": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/notifying_agencies/{id}": {
             "get": {
                 "tags": [
