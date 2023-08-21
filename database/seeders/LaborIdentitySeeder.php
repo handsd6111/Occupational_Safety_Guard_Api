@@ -16,7 +16,7 @@ class LaborIdentitySeeder extends Seeder
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
 
-        DB::table('labor_qualifiy_files')->truncate();
+        DB::table('labor_qualify_files')->truncate();
         DB::table('labor_files')->truncate();
         DB::table('labor_qualifies')->truncate();
         DB::table('labor_extra_identity_subsidies')->truncate();
