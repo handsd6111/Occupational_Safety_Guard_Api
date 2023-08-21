@@ -5,11 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AccidentType extends Model
+class LaborExtraIdentity extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'code';
-    protected $keyType = 'string';
+    public $incrementing = false;
     public $timestamps = false;
 }

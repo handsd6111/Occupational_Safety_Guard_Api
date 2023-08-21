@@ -16,6 +16,88 @@
     ],
     "paths": {
         "/": {},
+        "/api/accident_types/{code}": {
+            "get": {
+                "tags": [
+                    "災害類型"
+                ],
+                "summary": "災害類型",
+                "description": "查詢特定的災害類型",
+                "operationId": "e30ceb8c1c443356ef1af81572cd9c6b",
+                "parameters": [
+                    {
+                        "name": "code",
+                        "in": "path",
+                        "description": "可不帶，則為查詢所有災害類型",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "0001"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "頁碼",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "count",
+                        "in": "query",
+                        "description": "每頁筆數",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 10
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "請求成功。",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "code": {
+                                                        "type": "string"
+                                                    },
+                                                    "name": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "statusCode": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "countOfData": {
+                                            "type": "integer"
+                                        },
+                                        "countOfPage": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/auth/login": {
             "post": {
                 "tags": [
@@ -385,6 +467,88 @@
                                                 },
                                                 "type": "object"
                                             }
+                                        },
+                                        "statusCode": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "countOfData": {
+                                            "type": "integer"
+                                        },
+                                        "countOfPage": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/labor_insurance/{li_id}/{lei_id}/{ls_id}/{lq_id}": {
+            "get": {
+                "tags": [
+                    "勞保下載"
+                ],
+                "summary": "勞保下載",
+                "description": "查詢全部或指定條件之重大職災資訊",
+                "operationId": "941f03fe0fd00b3b73297db7a9062b52",
+                "parameters": [
+                    {
+                        "name": "li_id",
+                        "in": "path",
+                        "description": "身份",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 0
+                    },
+                    {
+                        "name": "lei_id",
+                        "in": "path",
+                        "description": "額外身份",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 0
+                    },
+                    {
+                        "name": "ls_id",
+                        "in": "path",
+                        "description": "補助",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 0
+                    },
+                    {
+                        "name": "lq_id",
+                        "in": "path",
+                        "description": "資格",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 0
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "請求成功。",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {}
                                         },
                                         "statusCode": {
                                             "type": "integer"

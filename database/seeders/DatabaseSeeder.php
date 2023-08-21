@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,7 +23,14 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             IndustrySeeder::class,
             NotifyingAgencySeeder::class,
-            MajorOccupationalAccidentSeeder::class
+            MajorOccupationalAccidentSeeder::class,
+            LaborIdentitySeeder::class,
+            LaborExtraIdentitySeeder::class,
+            LaborSubsidySeeder::class,
+            LaborExtraIdentitySubsidySeeder::class,
+            LaborQualifySeeder::class,
+            LaborFileSeeder::class,
+            LaborQualifyFileSeeder::class,
         ]);
     }
 }
