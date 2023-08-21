@@ -21,8 +21,7 @@ s = Service(r"./tools/chromedriver.exe")
 
 url = 'https://www.stat.gov.tw/StandardIndustrialClassification.aspx?n=3144&sms=11195&RID=11'
 
-driver = webdriver.Chrome(service=s,
-                          options=chrome_options)  # 套用設定
+driver = webdriver.Chrome(options=chrome_options)  # 套用設定
 driver.set_window_size(1920, 1080)  # 無頭設定視窗大小才不會有錯誤
 driver.maximize_window()  # 同上
 
