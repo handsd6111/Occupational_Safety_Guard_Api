@@ -54,7 +54,6 @@ class ImageController extends Controller
                 $record->improveStrategyImages()->save($coai);
             }
         }
-
         $record = AccidentRecordController::linkAll($record);
         return $this->sendResponse($record, 200, 1, 1);
     }
