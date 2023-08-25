@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-    const accessTokenExpireTime = 3 * 60;
+    const accessTokenExpireTime = 30 * 60;
     const refreshTokenExpireTime = 60 * 60;
 
     /**

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Model
 {
@@ -17,6 +18,10 @@ class User extends Model
         'email',
         'enabled'
     ];
+
+    public function accidentRecords(): HasMany {
+        return $this->hasMany(AccidentRecord::class, 'user_id', 'id');
+    }
 
     public function refreshTokens()
     {

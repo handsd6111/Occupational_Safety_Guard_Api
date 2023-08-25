@@ -52,15 +52,14 @@ class Handler extends ExceptionHandler
 
         // });
         $this->renderable(function (Exception $ex, Request $request) {
-            // if ($ex instanceof DomainException) {
-            //     return Controller::sendResponse([$ex->getMessage()], IStatusCode::BAD_REQUEST);
-            // } else if ($ex instanceof SignatureInvalidException) {
-            //     return Controller::sendResponse([$ex->getMessage()], IStatusCode::BAD_REQUEST);
-            // } else if ($ex instanceof ExpiredException) {
-            //     return Controller::sendResponse([$ex->getMessage()], IStatusCode::BAD_REQUEST);
-            // } else {
-                
-            // }
+            if ($ex instanceof DomainException) {
+                return Controller::sendResponse([$ex->getMessage()], IStatusCode::BAD_REQUEST);
+            } else if ($ex instanceof SignatureInvalidException) {
+                return Controller::sendResponse([$ex->getMessage()], IStatusCode::BAD_REQUEST);
+            } else if ($ex instanceof ExpiredException) {
+                return Controller::sendResponse([$ex->getMessage()], IStatusCode::UNAUTHORIZED);
+            } else {
+            }
         });
     }
 }

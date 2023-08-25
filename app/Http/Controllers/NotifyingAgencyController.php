@@ -36,6 +36,11 @@ class NotifyingAgencyController extends Controller
 
             if ($id > 0) {
                 $agency = NotifyingAgency::find($id);
+                $regions = DB::table('notifying_agency_regions')
+                    ->select(['jr.id as id', 'jr.region as name'])
+                    ->join('jurisdiction_regions as jr', 'jr.id', '=', 'jr_id')
+                    ->where('na_id', $id)->get();
+                $agency['regions'] = $regions;
                 return $this->sendResponse($agency, IStatusCode::OK);
             }
 
@@ -61,14 +66,6 @@ class NotifyingAgencyController extends Controller
      */
     public function getJurisdictionRegions(Request $request)
     {
-        // $validator = Validator::make($request->all(), [
-        //     'na_id' => 'required|Integer|exists:notifying_agencies,id',
-        // ]);
-
-        // // 驗證錯誤時
-        // if ($validator->fails()) {
-        //     return $this->sendResponse($validator->errors(), IStatusCode::BAD_REQUEST);
-        // }
 
         $skip = $request['page'] * $request['count'];
         $take = $request['count'];

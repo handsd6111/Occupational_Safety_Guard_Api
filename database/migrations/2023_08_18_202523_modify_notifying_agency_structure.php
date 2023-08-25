@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('jurisdiction_regions', function(Blueprint $table){
+        Schema::table('jurisdiction_regions', function (Blueprint $table) {
             $table->dropForeign(['na_id']);
         });
 
@@ -33,9 +33,14 @@ return new class extends Migration
      */
     public function down(): void
     {
+
+        Schema::table('notifying_agency_regions', function (Blueprint $table) {
+            $table->dropForeign(['na_id']);
+            $table->dropForeign(['jr_id']);
+        });
         Schema::dropIfExists('notifying_agency_regions');
-        
-        Schema::table('jurisdiction_regions', function(Blueprint $table){
+
+        Schema::table('jurisdiction_regions', function (Blueprint $table) {
             $table->smallInteger('na_id')->comment('機關編號')->unsigned();
             $table->foreign('na_id')->references('id')->on('notifying_agencies');
         });

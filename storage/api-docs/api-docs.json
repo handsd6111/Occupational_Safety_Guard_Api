@@ -16,6 +16,1071 @@
     ],
     "paths": {
         "/": {},
+        "/api/records/{id}": {
+            "get": {
+                "tags": [
+                    "災害紀錄"
+                ],
+                "summary": "取得災害紀錄",
+                "description": "查詢特定的災害類型",
+                "operationId": "9729c74f572b7eeb0a50368608f9ac7a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "可不帶，則為查詢自己所有的災害紀錄",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "請求成功。",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "business_industry_code": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "business_name": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "number_of_labor": {
+                                                    "type": "integer",
+                                                    "nullable": true
+                                                },
+                                                "business_owner": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "business_address": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "business_phone": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "contract_relationship_description": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "accident_happen_description": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "cause_of_accident_description": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "improve_strategy_desciption": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "pension_situation_description": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "user_id": {
+                                                    "type": "integer"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                },
+                                                "victims": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer"
+                                                            },
+                                                            "name": {
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            },
+                                                            "id_number": {
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            },
+                                                            "service_unit": {
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            },
+                                                            "phone": {
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            },
+                                                            "employment_date": {
+                                                                "type": "string",
+                                                                "format": "date",
+                                                                "nullable": true
+                                                            },
+                                                            "birthday": {
+                                                                "type": "string",
+                                                                "format": "date",
+                                                                "nullable": true
+                                                            },
+                                                            "address": {
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            },
+                                                            "degree_of_injury": {
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            },
+                                                            "ar_id": {
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "cause_of_accident_images": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer"
+                                                            },
+                                                            "url": {
+                                                                "type": "string"
+                                                            },
+                                                            "ar_id": {
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "contract_relationship_images": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer"
+                                                            },
+                                                            "url": {
+                                                                "type": "string"
+                                                            },
+                                                            "ar_id": {
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "improve_strategy_images": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer"
+                                                            },
+                                                            "url": {
+                                                                "type": "string"
+                                                            },
+                                                            "ar_id": {
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "statusCode": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "countOfData": {
+                                            "type": "integer"
+                                        },
+                                        "countOfPage": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_jwt_security": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "災害紀錄"
+                ],
+                "summary": "修改災害紀錄",
+                "description": "修改自己的單筆災害紀錄",
+                "operationId": "f7f3d4e9888b1a33bf439c1728d2cfe6",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "欲修改的災害紀錄Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "business_industry_code",
+                        "in": "query",
+                        "description": "行業代碼",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "business_name",
+                        "in": "query",
+                        "description": "企業名稱",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "number_of_labor",
+                        "in": "query",
+                        "description": "勞工人數",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "business_owner",
+                        "in": "query",
+                        "description": "企業擁有者",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "business_address",
+                        "in": "query",
+                        "description": "企業地址",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "business_phone",
+                        "in": "query",
+                        "description": "企業電話",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "contract_relationship_description",
+                        "in": "query",
+                        "description": "合約關係說明",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "accident_happen_description",
+                        "in": "query",
+                        "description": "事故發生說明",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "cause_of_accident_description",
+                        "in": "query",
+                        "description": "事故原因說明",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "improve_strategy_desciption",
+                        "in": "query",
+                        "description": "改善策略說明",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "pension_situation_description",
+                        "in": "query",
+                        "description": "退休金情況說明",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "請求成功。",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "business_industry_code": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "business_name": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "number_of_labor": {
+                                                    "type": "integer",
+                                                    "nullable": true
+                                                },
+                                                "business_owner": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "business_address": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "business_phone": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "contract_relationship_description": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "accident_happen_description": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "cause_of_accident_description": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "improve_strategy_desciption": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "pension_situation_description": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "user_id": {
+                                                    "type": "integer"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                },
+                                                "victims": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer"
+                                                            },
+                                                            "name": {
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            },
+                                                            "id_number": {
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            },
+                                                            "service_unit": {
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            },
+                                                            "phone": {
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            },
+                                                            "employment_date": {
+                                                                "type": "string",
+                                                                "format": "date",
+                                                                "nullable": true
+                                                            },
+                                                            "birthday": {
+                                                                "type": "string",
+                                                                "format": "date",
+                                                                "nullable": true
+                                                            },
+                                                            "address": {
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            },
+                                                            "degree_of_injury": {
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            },
+                                                            "ar_id": {
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "cause_of_accident_images": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer"
+                                                            },
+                                                            "url": {
+                                                                "type": "string"
+                                                            },
+                                                            "ar_id": {
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "contract_relationship_images": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer"
+                                                            },
+                                                            "url": {
+                                                                "type": "string"
+                                                            },
+                                                            "ar_id": {
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "improve_strategy_images": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer"
+                                                            },
+                                                            "url": {
+                                                                "type": "string"
+                                                            },
+                                                            "ar_id": {
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "statusCode": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "countOfData": {
+                                            "type": "integer"
+                                        },
+                                        "countOfPage": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_jwt_security": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "災害紀錄"
+                ],
+                "summary": "刪除災害紀錄",
+                "description": "刪除自己的一筆災害紀錄",
+                "operationId": "0b94715298992010a0e20a57d61d9e87",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "欲刪除的災害紀錄Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "請求成功。",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "business_industry_code": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "business_name": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "number_of_labor": {
+                                                    "type": "integer",
+                                                    "nullable": true
+                                                },
+                                                "business_owner": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "business_address": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "business_phone": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "contract_relationship_description": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "accident_happen_description": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "cause_of_accident_description": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "improve_strategy_desciption": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "pension_situation_description": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "user_id": {
+                                                    "type": "integer"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                },
+                                                "victims": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer"
+                                                            },
+                                                            "name": {
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            },
+                                                            "id_number": {
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            },
+                                                            "service_unit": {
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            },
+                                                            "phone": {
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            },
+                                                            "employment_date": {
+                                                                "type": "string",
+                                                                "format": "date",
+                                                                "nullable": true
+                                                            },
+                                                            "birthday": {
+                                                                "type": "string",
+                                                                "format": "date",
+                                                                "nullable": true
+                                                            },
+                                                            "address": {
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            },
+                                                            "degree_of_injury": {
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            },
+                                                            "ar_id": {
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "cause_of_accident_images": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer"
+                                                            },
+                                                            "url": {
+                                                                "type": "string"
+                                                            },
+                                                            "ar_id": {
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "contract_relationship_images": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer"
+                                                            },
+                                                            "url": {
+                                                                "type": "string"
+                                                            },
+                                                            "ar_id": {
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "improve_strategy_images": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer"
+                                                            },
+                                                            "url": {
+                                                                "type": "string"
+                                                            },
+                                                            "ar_id": {
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "statusCode": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "countOfData": {
+                                            "type": "integer"
+                                        },
+                                        "countOfPage": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_jwt_security": []
+                    }
+                ]
+            }
+        },
+        "/api/records": {
+            "post": {
+                "tags": [
+                    "災害紀錄"
+                ],
+                "summary": "新增災害紀錄",
+                "description": "新增一筆災害紀錄",
+                "operationId": "35774c103be097ee2c7de3af93db1cd8",
+                "responses": {
+                    "200": {
+                        "description": "請求成功。",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "business_industry_code": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "business_name": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "number_of_labor": {
+                                                    "type": "integer",
+                                                    "nullable": true
+                                                },
+                                                "business_owner": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "business_address": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "business_phone": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "contract_relationship_description": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "accident_happen_description": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "cause_of_accident_description": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "improve_strategy_desciption": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "pension_situation_description": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "user_id": {
+                                                    "type": "integer"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                },
+                                                "victims": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer"
+                                                            },
+                                                            "name": {
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            },
+                                                            "id_number": {
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            },
+                                                            "service_unit": {
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            },
+                                                            "phone": {
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            },
+                                                            "employment_date": {
+                                                                "type": "string",
+                                                                "format": "date",
+                                                                "nullable": true
+                                                            },
+                                                            "birthday": {
+                                                                "type": "string",
+                                                                "format": "date",
+                                                                "nullable": true
+                                                            },
+                                                            "address": {
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            },
+                                                            "degree_of_injury": {
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            },
+                                                            "ar_id": {
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "cause_of_accident_images": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer"
+                                                            },
+                                                            "url": {
+                                                                "type": "string"
+                                                            },
+                                                            "ar_id": {
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "contract_relationship_images": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer"
+                                                            },
+                                                            "url": {
+                                                                "type": "string"
+                                                            },
+                                                            "ar_id": {
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "improve_strategy_images": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer"
+                                                            },
+                                                            "url": {
+                                                                "type": "string"
+                                                            },
+                                                            "ar_id": {
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "statusCode": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "countOfData": {
+                                            "type": "integer"
+                                        },
+                                        "countOfPage": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_jwt_security": []
+                    }
+                ]
+            }
+        },
+        "/api/generateWord": {
+            "post": {
+                "tags": [
+                    "災害紀錄"
+                ],
+                "summary": "產生報表",
+                "description": "產生一份職災調查結果書",
+                "operationId": "bdd78d4f03c02e54c517e78229b92ed2",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "victims[]": {
+                                        "description": "罹災者資料",
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "id_number": {
+                                                    "type": "string"
+                                                },
+                                                "service_unit": {
+                                                    "type": "string"
+                                                },
+                                                "phone": {
+                                                    "type": "string"
+                                                },
+                                                "address": {
+                                                    "type": "string"
+                                                },
+                                                "degree_of_injury": {
+                                                    "type": "string"
+                                                },
+                                                "employment_date": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "business_name": {
+                                        "type": "string"
+                                    },
+                                    "business_industry": {
+                                        "type": "string"
+                                    },
+                                    "number_of_labor": {
+                                        "type": "string"
+                                    },
+                                    "business_owner": {
+                                        "type": "string"
+                                    },
+                                    "business_address": {
+                                        "type": "string"
+                                    },
+                                    "business_phone": {
+                                        "type": "string"
+                                    },
+                                    "contract_relationship_description": {
+                                        "type": "string"
+                                    },
+                                    "contract_relationship_images[]": {
+                                        "description": "承攬關係的圖片",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "format": "binary"
+                                        }
+                                    },
+                                    "accident_happen_description": {
+                                        "type": "string"
+                                    },
+                                    "cause_of_accident_description": {
+                                        "type": "string"
+                                    },
+                                    "cause_of_accident_images[]": {
+                                        "description": "事故原因的圖片",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "format": "binary"
+                                        }
+                                    },
+                                    "improve_strategy_desciption": {
+                                        "type": "string"
+                                    },
+                                    "improve_strategy_images[]": {
+                                        "description": "改善對策的圖片",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "format": "binary"
+                                        }
+                                    },
+                                    "pension_situation_descriptions": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "File downloaded successfully",
+                        "content": {
+                            "application/octet-stream": {}
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_jwt_security": []
+                    }
+                ]
+            }
+        },
         "/api/accident_types/{code}": {
             "get": {
                 "tags": [
@@ -405,6 +1470,254 @@
                         }
                     }
                 }
+            }
+        },
+        "/api/images": {
+            "post": {
+                "tags": [
+                    "災害紀錄"
+                ],
+                "summary": "新增照片",
+                "description": "新增一張照片至災害紀錄",
+                "operationId": "03fd3088dc11b502aa2bec808907a481",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "ar_id"
+                                ],
+                                "properties": {
+                                    "ar_id": {
+                                        "description": "要填入的職災紀錄中",
+                                        "type": "integer",
+                                        "format": "json",
+                                        "example": 1
+                                    },
+                                    "cause_of_accident_images[]": {
+                                        "description": "承攬關係的圖片",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "format": "binary"
+                                        }
+                                    },
+                                    "improve_strategy_images[]": {
+                                        "description": "事故原因的圖片",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "format": "binary"
+                                        }
+                                    },
+                                    "contract_relationship_images[]": {
+                                        "description": "改善對策的圖片",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "format": "binary"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "請求成功。",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "business_industry_code": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "business_name": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "number_of_labor": {
+                                                    "type": "integer",
+                                                    "nullable": true
+                                                },
+                                                "business_owner": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "business_address": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "business_phone": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "contract_relationship_description": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "accident_happen_description": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "cause_of_accident_description": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "improve_strategy_desciption": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "pension_situation_description": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "user_id": {
+                                                    "type": "integer"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                },
+                                                "victims": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer"
+                                                            },
+                                                            "name": {
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            },
+                                                            "id_number": {
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            },
+                                                            "service_unit": {
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            },
+                                                            "phone": {
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            },
+                                                            "employment_date": {
+                                                                "type": "string",
+                                                                "format": "date",
+                                                                "nullable": true
+                                                            },
+                                                            "birthday": {
+                                                                "type": "string",
+                                                                "format": "date",
+                                                                "nullable": true
+                                                            },
+                                                            "address": {
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            },
+                                                            "degree_of_injury": {
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            },
+                                                            "ar_id": {
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "cause_of_accident_images": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer"
+                                                            },
+                                                            "url": {
+                                                                "type": "string"
+                                                            },
+                                                            "ar_id": {
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "contract_relationship_images": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer"
+                                                            },
+                                                            "url": {
+                                                                "type": "string"
+                                                            },
+                                                            "ar_id": {
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "improve_strategy_images": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer"
+                                                            },
+                                                            "url": {
+                                                                "type": "string"
+                                                            },
+                                                            "ar_id": {
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "statusCode": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "countOfData": {
+                                            "type": "integer"
+                                        },
+                                        "countOfPage": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_jwt_security": []
+                    }
+                ]
             }
         },
         "/api/industries/{code}": {

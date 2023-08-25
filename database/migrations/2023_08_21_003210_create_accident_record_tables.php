@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('cause_of_accident_description', 1024)->nullable()->comment('發生原因描述');
             $table->string('improve_strategy_desciption', 1024)->nullable()->comment('改善對策描述');
             $table->string('pension_situation_description')->nullable()->comment('體恤情況描述');
+            $table->integer('user_id')->unsigned()->comment('使用者編號');
+            // $table->foreign('')
             $table->timestamps();
         });
 
