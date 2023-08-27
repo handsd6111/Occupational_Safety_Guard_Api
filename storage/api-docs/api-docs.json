@@ -2200,6 +2200,145 @@
                 }
             }
         },
+        "/api/notifying": {
+            "get": {
+                "tags": [
+                    "線上通報資料"
+                ],
+                "summary": "通報選擇欄位資料",
+                "description": "取得職災網路通報資料所有 Select 的欄位",
+                "operationId": "5f5698792a3fa6d9bcd9424c196f22fb",
+                "responses": {
+                    "200": {
+                        "description": "請求成功。",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "accident_types": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "code": {
+                                                                "type": "string"
+                                                            },
+                                                            "name": {
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "degree_of_injuries": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "code": {
+                                                                "type": "string"
+                                                            },
+                                                            "name": {
+                                                                "type": "string"
+                                                            },
+                                                            "need_hospital": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "properties": {
+                                                                        "code": {
+                                                                            "type": "string"
+                                                                        },
+                                                                        "name": {
+                                                                            "type": "string"
+                                                                        }
+                                                                    },
+                                                                    "type": "object"
+                                                                }
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "insurances": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "code": {
+                                                                "type": "string"
+                                                            },
+                                                            "name": {
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "victim_identites": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "code": {
+                                                                "type": "string"
+                                                            },
+                                                            "name": {
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "counties": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "code": {
+                                                                "type": "string"
+                                                            },
+                                                            "name": {
+                                                                "type": "string"
+                                                            },
+                                                            "towns": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "properties": {
+                                                                        "code": {
+                                                                            "type": "string"
+                                                                        },
+                                                                        "name": {
+                                                                            "type": "string"
+                                                                        }
+                                                                    },
+                                                                    "type": "object"
+                                                                }
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "statusCode": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "countOfData": {
+                                            "type": "integer"
+                                        },
+                                        "countOfPage": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/notifying_agencies/{id}": {
             "get": {
                 "tags": [

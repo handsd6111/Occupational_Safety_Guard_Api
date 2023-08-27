@@ -1,3 +1,5 @@
+cd notifying
+python3 main.py
 cd notifying_agencies
 python3 main.py
 cd ../counties_and_towns

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AccidentRecordController;
 use App\Http\Controllers\AccidentTypeController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\CountyController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\IndustryController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\VictimController;
 use App\Http\Middleware\CustomPreValidate;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +31,10 @@ Route::prefix('auth')->group(function () {
     Route::post('register', [UserController::class, 'create']);
     Route::post('login', [AuthController::class, 'login']);
     Route::post('refresh_token', [AuthController::class, 'refreshToken'])->middleware('auth:user');
+});
+
+Route::get('notifying', function () {
+    return Controller::sendResponse(json_decode(Storage::get('notifying.json')), 200, 1, 1);
 });
 
 Route::middleware([CustomPreValidate::class])->group(function () {
@@ -63,9 +69,9 @@ Route::middleware([CustomPreValidate::class])->group(function () {
     Route::get('industry_statistics', [MajorOccupationalAccidentController::class, 'getIndustryStatistics'])->withoutMiddleware(CustomPreValidate::class);
 
     Route::get('labor_insurance/{li_id?}/{lei_id?}/{ls_id?}/{lq_id?}', [LaborInsuranceController::class, 'getLaborInsurance'])->withoutMiddleware(CustomPreValidate::class);
-    
+
     Route::post('generateWord', [AccidentRecordController::class, 'generateWord'])->withoutMiddleware(CustomPreValidate::class);
-    
+
     Route::middleware('auth:user')->group(function () {
         Route::prefix('records')->withoutMiddleware(CustomPreValidate::class)->group(function () {
             Route::get('/{id?}', [AccidentRecordController::class, 'getRecord']);
