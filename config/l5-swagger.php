@@ -12,7 +12,7 @@ return [
                 /*
                  * Route for accessing api documentation interface
                 */
-                'api' => 'api/documentation',
+                'api' => env('API_PREFIX_HASH') . '/api/documentation',
             ],
             'paths' => [
                 /*
@@ -88,7 +88,7 @@ return [
              * Edit to set the api's base path
             */
             'base' => env('L5_SWAGGER_BASE_PATH', null),
-
+            
             /*
              * Edit to set path where swagger ui assets should be stored
             */

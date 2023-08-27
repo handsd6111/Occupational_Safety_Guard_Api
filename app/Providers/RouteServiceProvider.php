@@ -25,10 +25,10 @@ class RouteServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->configureRateLimiting();
-
         $this->routes(function () {
+            $apiPrefixHash = env('API_PREFIX_HASH');
             Route::middleware('api')
-                ->prefix('api')
+                ->prefix("$apiPrefixHash/api")
                 ->group(base_path('routes/api.php'));
 
             Route::middleware('web')
