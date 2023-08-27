@@ -2,6 +2,8 @@
 
 namespace App\Docs;
 
+define('L5_SWAGGER_BASE_PATH', env('L5_SWAGGER_BASE_PATH')); // Define a runtime constant
+
 
 /**
  * @OA\OpenApi(
@@ -15,7 +17,7 @@ namespace App\Docs;
  *  ),
  *  @OA\Server(
  *      description="正式區",
- *      url="https://cool.aronhome.com:51504"
+ *      url=L5_SWAGGER_BASE_PATH
  *  ),
  *  @OA\PathItem(
  *      path="/"
