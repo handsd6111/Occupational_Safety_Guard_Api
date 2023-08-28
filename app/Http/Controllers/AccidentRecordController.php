@@ -17,6 +17,16 @@ class AccidentRecordController extends Controller
 {
     public function getRecord(Request $request, $id = 0)
     {
+        $request['id'] = $id;
+        $validator = Validator::make($request->all(), [
+            'id' => 'integer',
+        ]);
+
+        // 驗證錯誤時
+        if ($validator->fails()) {
+            return $this->sendResponse($validator->errors(), IStatusCode::BAD_REQUEST);
+        }
+
         $user = $this->getUserByJwt($request);
 
         if ($id != 0) {
@@ -49,6 +59,18 @@ class AccidentRecordController extends Controller
 
     public function updateRecord(Request $request, $id)
     {
+        $request['id'] = $id;
+        $validator = Validator::make($request->all(), [
+            'id' => 'integer|exists:accident_records,id',
+            'business_industry_code' => 'string|exists:industries,code',
+            'number_of_labor' => 'integer',
+        ]);
+
+        // 驗證錯誤時
+        if ($validator->fails()) {
+            return $this->sendResponse($validator->errors(), IStatusCode::BAD_REQUEST);
+        }
+
         $columns = [
             'business_industry_code',
             'business_name',
@@ -75,6 +97,16 @@ class AccidentRecordController extends Controller
 
     public function deleteRecord(Request $request, $id)
     {
+        $request['id'] = $id;
+        $validator = Validator::make($request->all(), [
+            'id' => 'integer|exists:accident_records,id',
+        ]);
+
+        // 驗證錯誤時
+        if ($validator->fails()) {
+            return $this->sendResponse($validator->errors(), IStatusCode::BAD_REQUEST);
+        }
+
         $user = $this->getUserByJwt($request);
         $record = AccidentRecord::where('user_id', $user->id)->find($id);
         $record->victims()->delete();
@@ -88,8 +120,6 @@ class AccidentRecordController extends Controller
 
     public function generateWord(Request $request)
     {
-        return var_dump($request->all());
-
         // 建立一個新的 Word 物件
         $phpWord = new PhpWord();
         $section = $phpWord->addSection();
