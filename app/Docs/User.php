@@ -73,4 +73,94 @@ interface User extends Info
      * )
      */
     public function create(Request $request);
+
+    /**
+     * @OA\Get(
+     *     tags={"使用者"},
+     *     path="/api/users/subscribe",
+     *     summary="取得使用者訂閱",
+     *     description="取得使用者是否有訂閱重大職災事件推播",
+     *     security={{"api_jwt_security": {}}},
+     *     @OA\Response(
+     *         response=201, 
+     *         description="建立資料成功。",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="data",
+     *                 type="boolean"
+     *             ),
+     *             @OA\Property(
+     *                 property="statusCode",
+     *                 type="integer",
+     *                 example=201
+     *             ),
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 example="建立資料成功。"
+     *             ),
+     *             @OA\Property(
+     *                 property="countOfData",
+     *                 type="integer",
+     *                 example=0
+     *             ),
+     *             @OA\Property(
+     *                 property="countOfPage",
+     *                 type="integer",
+     *                 example=0
+     *             )
+     *         )
+     *     )
+     * )
+     */
+    public function getUserHasSubscribe(Request $request);
+
+    /**
+     * @OA\Put(
+     *     tags={"使用者"},
+     *     path="/api/users/subscribe",
+     *     summary="修改使用者訂閱",
+     *     description="修改使用者是否訂閱重大職災事件推播",
+     *     security={{"api_jwt_security": {}}},
+     *     @OA\Parameter(
+     *         name="subscribe",
+     *         in="query",
+     *         description="是否訂閱(1: 訂閱, 0: 取消訂閱)",
+     *         required=true,
+     *         @OA\Schema(type="integer"),
+     *         example=1
+     *     ),
+     *     @OA\Response(
+     *         response=201, 
+     *         description="建立資料成功。",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="data",
+     *                 type="boolean"
+     *             ),
+     *             @OA\Property(
+     *                 property="statusCode",
+     *                 type="integer",
+     *                 example=201
+     *             ),
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 example="建立資料成功。"
+     *             ),
+     *             @OA\Property(
+     *                 property="countOfData",
+     *                 type="integer",
+     *                 example=0
+     *             ),
+     *             @OA\Property(
+     *                 property="countOfPage",
+     *                 type="integer",
+     *                 example=0
+     *             )
+     *         )
+     *     )
+     * )
+     */
+    public function subscribeAccident(Request $request);
 }

@@ -59,8 +59,53 @@ class UserController extends Controller
             // 預設指派user的角色給新建立的使用者。
             $user->roles()->save($roleUser);
         });
-        
+
         // 送出建立成功的Response。
         return $this->sendResponse([], IStatusCode::CREATED);
+    }
+
+    public function getUserHasSubscribe(Request $request)
+    {
+        $user = $this->getUserByJwt($request);
+        // return $user->subscribe;
+        return $this->sendResponse((bool)$user->subscribe, 200, 1, 1);
+    }
+
+    public function subscribeAccident(Request $request)
+    {
+        // 建立Validation規則。
+        $validator = Validator::make($request->all(), [
+            'subscribe' => 'required|bool',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->sendResponse($validator->errors(), IStatusCode::BAD_REQUEST);
+        }
+
+        $user = $this->getUserByJwt($request);
+        $user->subscribe = $request['subscribe'];
+        $user->save();
+        
+        return $this->sendResponse((bool)$user->subscribe, 200, 1, 1);
+    }
+
+    public function getUserByJwt($request)
+    {
+        // 取得Request的Header。
+        $header = $request->header('authorization');
+
+        // 從Header中取得JWT。
+        $jwt = str_replace("Bearer ", '', $header);
+
+        // 驗證JWT，若沒問題則取得Payload的部分，內部包含使用者資訊。
+        $userInfo = TokenController::verifyAndBase64DecodeJwt($jwt);
+
+        // 驗證失敗。
+        if ($userInfo === false) {
+            return $this->sendResponse('JWT錯誤', IStatusCode::BAD_REQUEST);
+        }
+
+        // 取得指定使用者。
+        return User::where('id', $userInfo->userId)->first();
     }
 }

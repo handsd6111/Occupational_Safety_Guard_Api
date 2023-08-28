@@ -13,6 +13,8 @@ use App\Http\Controllers\NotifyingAgencyController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VictimController;
 use App\Http\Middleware\CustomPreValidate;
+use App\Mail\MajorOccupationalAccidentMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
@@ -33,9 +35,45 @@ Route::prefix('auth')->group(function () {
     Route::post('refresh_token', [AuthController::class, 'refreshToken'])->middleware('auth:user');
 });
 
+// Route::get('send_mail/{id}', [MajorOccupationalAccidentController::class, 'sendMail']);
+
 Route::get('notifying', function () {
     return Controller::sendResponse(json_decode(Storage::get('notifying.json')), 200, 1, 1);
 });
+
+Route::post('generateWord', [AccidentRecordController::class, 'generateWord']);
+
+Route::middleware('auth:user')->group(function () {
+
+    Route::prefix('users/subscribe')->group(function () {
+        Route::get('', [UserController::class, 'getUserHasSubscribe']);
+        Route::put('', [UserController::class, 'subscribeAccident']);
+    });
+
+    Route::prefix('records')->group(function () {
+        Route::get('/{id?}', [AccidentRecordController::class, 'getRecord']);
+        Route::post('', [AccidentRecordController::class, 'createRecord']);
+        Route::put('/{id}', [AccidentRecordController::class, 'updateRecord']);
+        Route::delete('/{id}', [AccidentRecordController::class, 'deleteRecord']);
+    });
+
+    Route::prefix('victims')->group(function () {
+        Route::post('', [VictimController::class, 'createVictim']);
+        Route::put('/{id}', [VictimController::class, 'updateVictim']);
+        Route::delete('/{id}', [VictimController::class, 'deleteVictim']);
+    });
+
+    Route::prefix('images')->group(function () {
+        Route::post('', [ImageController::class, 'createImage']);
+        Route::post('/{id}', [ImageController::class, 'updateImage']);
+        Route::delete('/{id}', [ImageController::class, 'deleteImage']);
+    });
+});
+
+Route::get('accident_type_statistics', [MajorOccupationalAccidentController::class, 'getAccidentTypeStatistics']);
+    Route::get('industry_statistics', [MajorOccupationalAccidentController::class, 'getIndustryStatistics']);
+
+    Route::get('labor_insurance/{li_id?}/{lei_id?}/{ls_id?}/{lq_id?}', [LaborInsuranceController::class, 'getLaborInsurance']);
 
 Route::middleware([CustomPreValidate::class])->group(function () {
     Route::prefix('notifying_agencies')->group(function () {
@@ -63,33 +101,5 @@ Route::middleware([CustomPreValidate::class])->group(function () {
 
     Route::prefix('major_occupational_accidents')->group(function () {
         Route::get('', [MajorOccupationalAccidentController::class, 'getMajorOccupationalAccidents']);
-    });
-
-    Route::get('accident_type_statistics', [MajorOccupationalAccidentController::class, 'getAccidentTypeStatistics'])->withoutMiddleware(CustomPreValidate::class);
-    Route::get('industry_statistics', [MajorOccupationalAccidentController::class, 'getIndustryStatistics'])->withoutMiddleware(CustomPreValidate::class);
-
-    Route::get('labor_insurance/{li_id?}/{lei_id?}/{ls_id?}/{lq_id?}', [LaborInsuranceController::class, 'getLaborInsurance'])->withoutMiddleware(CustomPreValidate::class);
-
-    Route::post('generateWord', [AccidentRecordController::class, 'generateWord'])->withoutMiddleware(CustomPreValidate::class);
-
-    Route::middleware('auth:user')->group(function () {
-        Route::prefix('records')->withoutMiddleware(CustomPreValidate::class)->group(function () {
-            Route::get('/{id?}', [AccidentRecordController::class, 'getRecord']);
-            Route::post('', [AccidentRecordController::class, 'createRecord']);
-            Route::put('/{id}', [AccidentRecordController::class, 'updateRecord']);
-            Route::delete('/{id}', [AccidentRecordController::class, 'deleteRecord']);
-        });
-
-        Route::prefix('victims')->withoutMiddleware(CustomPreValidate::class)->group(function () {
-            Route::post('', [VictimController::class, 'createVictim']);
-            Route::put('/{id}', [VictimController::class, 'updateVictim']);
-            Route::delete('/{id}', [VictimController::class, 'deleteVictim']);
-        });
-
-        Route::prefix('images')->withoutMiddleware(CustomPreValidate::class)->group(function () {
-            Route::post('', [ImageController::class, 'createImage']);
-            Route::post('/{id}', [ImageController::class, 'updateImage']);
-            Route::delete('/{id}', [ImageController::class, 'deleteImage']);
-        });
     });
 });

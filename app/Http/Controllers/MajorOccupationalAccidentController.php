@@ -2,16 +2,44 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\MajorOccupationalAccidentMail;
 use App\Models\AccidentType;
 use App\Models\Industry;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Interfaces\IStatusCode;
 use App\Models\MajorOccupationalAccident;
+use App\Models\NotifyingAgency;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class MajorOccupationalAccidentController extends Controller
 {
+    public function sendMail($id)
+    {
+        $users = User::where('subscribe', true)->get();
+        $mailUsers = [];
+        foreach ($users as $user) {
+            $mailUsers[] = [
+                'email' => $user->email,
+                'name' => $user->name,
+            ];
+        }
+        $moa = MajorOccupationalAccident::find($id);
+        $accidentType = AccidentType::where('code', $moa->accident_type)->get()[0];
+        $industry = Industry::where('code', $moa->industry)->get()[0];
+        $notifyingAgency = NotifyingAgency::find($moa->notifying_agency);
+        unset($moa['id']);
+        $moa['occurrence_date'] = date('Y/m/d', strtotime($moa['occurrence_date']));
+        $moa['industry'] = $industry->name;
+        $moa['accident_type'] = $accidentType->name;
+        $moa['notifying_agency'] = $notifyingAgency->agency_name;
+        $moa['scan_time'] = date('Y/m/d H:i:s', now()->timestamp);
+        // return $moa;
+        Mail::to($mailUsers)->send(new MajorOccupationalAccidentMail($moa));
+    }
+
     public function getMajorOccupationalAccidents(Request $request)
     {
         $validator = Validator::make($request->all(), [

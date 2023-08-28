@@ -2,6 +2,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
+import os
 import sys
 sys.path.append('../')
 from sql.common import execSql, checkRowIsExists, insertOneRow, updateOneRow
@@ -102,6 +103,8 @@ for accident in accidentList:
         print('更新第{i}筆'.format(i=index))
     else:  # 沒有此筆資料
         execSql(insertOneRow('major_occupational_accidents', columns, datas))  # 則寫入
+        moaId = execSql('select id from `major_occupational_accidents` order by id desc limit 0, 1').fetchone()[0]
+        os.system('php ../../artisan MOA-send-mail ' + str(moaId))
         print('寫入第{i}筆'.format(i=index))
 
 
