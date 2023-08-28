@@ -548,7 +548,7 @@ interface AccidentRecord extends Info
      *                         format="binary"
      *                     )
      *                 ),
-     *                 @OA\Property(property="pension_situation_descriptions", type="string"),
+     *                 @OA\Property(property="pension_situation_description", type="string"),
      *             )
      *         )
      *     ),

@@ -1060,7 +1060,7 @@
                                             "format": "binary"
                                         }
                                     },
-                                    "pension_situation_descriptions": {
+                                    "pension_situation_description": {
                                         "type": "string"
                                     }
                                 },
