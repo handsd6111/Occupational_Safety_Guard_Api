@@ -3,6 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
+import time
 import sys
 sys.path.append('../')
 from sql.common import execSql, checkRowIsExists, insertOneRow, updateOneRow
@@ -20,6 +21,9 @@ url = 'https://insp.osha.gov.tw/labcbs/manual/disaddrbook.htm'
 driver = webdriver.Chrome(options=chrome_options)  # 套用設定
 driver.set_window_size(1920, 1080)  # 無頭設定視窗大小才不會有錯誤
 driver.maximize_window()  # 同上
+
+print('開始抓取「通報機關」資料：')
+start = time.time()
 
 driver.get(url)  # 訪問URL
 table = driver.find_element(By.TAG_NAME, 'table').find_element(
@@ -79,3 +83,6 @@ for index, tr in enumerate(trList):
             execSql(updateOneRow('notifying_agency_regions', columns, datas, primaryKeys, values)) # 更新資料
         else: # 沒有此筆資料
             execSql(insertOneRow('notifying_agency_regions', columns, datas)) # 則寫入
+
+end = time.time()
+print('執行成功，總共耗時 %f 秒' % (end - start))

@@ -1,8 +1,12 @@
 import requests as rq
 import xml.etree.cElementTree as et
+import time
 import sys
 sys.path.append('../')
 from sql.common import execSql, checkRowIsExists, insertOneRow, updateOneRow
+
+print('開始抓取「縣市鄉鎮」資料：')
+start = time.time()
 
 apiLink = "https://api.nlsc.gov.tw/other/ListCounty"
 output = rq.get(apiLink)
@@ -39,5 +43,5 @@ for county in tree.findall('countyItem'):
         else: # 沒有此筆資料
             execSql(insertOneRow('towns', columns, datas)) # 則寫入
             
-        
-        
+end = time.time()
+print('執行成功，總共耗時 %f 秒' % (end - start))

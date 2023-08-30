@@ -2,6 +2,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
+import time
 import sys
 sys.path.append('../')
 from sql.common import execSql, checkRowIsExists, insertOneRow, updateOneRow
@@ -29,6 +30,9 @@ class AccidentType:
     def __init__(self, code, name):
         self.code = code  # 行業代碼
         self.name = name  # 行業名稱
+        
+print('開始抓取「災害類型」資料：')
+start = time.time()
 
 
 driver.get(url)  # 訪問URL
@@ -60,4 +64,5 @@ for index, option in enumerate(optionList):
     else:  # 沒有此筆資料
         execSql(insertOneRow('accident_types', columns, datas))  # 則寫入
 
-print('執行成功')
+end = time.time()
+print('執行成功，總共耗時 %f 秒' % (end - start))

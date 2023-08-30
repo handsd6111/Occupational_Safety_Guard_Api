@@ -2,6 +2,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
+import time
 import os
 import sys
 sys.path.append('../')
@@ -40,7 +41,9 @@ class MajorOccupationalAccident:
         self.accident_location = accident_location
         self.accident_address = accident_address
         self.notifying_agency = notifying_agency  # 勞動檢查機構
-
+        
+print('開始抓取「重大職災」資料：')
+start = time.time()
 
 driver.get(url)  # 訪問URL
 index = 0
@@ -108,4 +111,6 @@ for accident in accidentList:
         print('寫入第{i}筆'.format(i=index))
 
 
-print('執行成功')
+end = time.time()
+print('執行成功，總共耗時 %f 秒' % (end - start))
+

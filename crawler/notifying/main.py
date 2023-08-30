@@ -29,7 +29,9 @@ class Common:
     def __init__(self, code, name):
         self.code = code  # 行業代碼
         self.name = name  # 行業名稱
-
+        
+print('開始抓取「職災網路通報」資料：')
+start = time.time()
 
 driver.get(url)  # 訪問URL
 # print(driver.page_source)
@@ -38,6 +40,7 @@ driver.find_element(By.ID, 'btndisnotify').click()
 accidentTypeOptions = driver.find_element(By.ID, 'a_DT_code').find_elements(By.TAG_NAME, 'option')
 degreeOfInjuryOptions = driver.find_element(By.ID, 'dgListH_DD_code_0').find_elements(By.TAG_NAME, 'option')
 insuranceOptions = driver.find_element(By.ID, 'dgListH_is_insu_0').find_elements(By.TAG_NAME, 'option')
+notityingAgencyOption = driver.find_element(By.ID, 'u_deptno').find_elements(By.TAG_NAME, 'option')
 victimIdentityOptions = driver.find_element(By.ID, 'dgListH_DK_code_0').find_elements(By.TAG_NAME, 'option')
 countyOptions = driver.find_element(By.ID, 'a_city_code').find_elements(By.TAG_NAME, 'option')
 result = {}
@@ -120,7 +123,20 @@ for index, county in enumerate(result['counties']):
         if ('towns' not in county):
             county['towns'] = []
         result['counties'][index]['towns'].append(town.__dict__)
+        
+    notifyingAgnecyOptions = driver.find_element(By.ID, 'u_deptno').find_elements(By.TAG_NAME, 'option')
+    for naIndex, option in enumerate(notifyingAgnecyOptions):
+        if(naIndex == 0): continue
+        notifyingAgency = Common(
+            option.get_attribute('value'),
+            option.text
+        )
+        if ('notifying_agency' not in county):
+            county['notifying_agency'] = []
+        result['counties'][index]['notifying_agency'].append(notifyingAgency.__dict__)
 
 with open('../../storage/app/notifying.json', 'w') as file:
     json.dump(result, file)
-print('執行成功')
+    
+end = time.time()
+print('執行成功，總共耗時 %f 秒' % (end - start))
