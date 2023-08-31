@@ -60,6 +60,7 @@ class ImageController extends Controller
 
     public function updateImage(Request $request, $id)
     {
+
         $validator = Validator::make($request->all(), [
             'ar_id' => 'required|exists:accident_records,id'
         ]);
@@ -72,7 +73,7 @@ class ImageController extends Controller
 
         if ($request->hasFile('contract_relationship_image')) {
             $cri = ContractRelationshipImage::find($id);
-            if (empty($isi)) {
+            if (empty($cri)) {
                 return $this->sendResponse('圖片 ID 錯誤', 400);
             }
             if (!empty($cri)) {
@@ -86,7 +87,7 @@ class ImageController extends Controller
 
         if ($request->hasFile('cause_of_accident_image')) {
             $coai = CauseOfAccidentImage::find($id);
-            if (empty($isi)) {
+            if (empty($coai)) {
                 return $this->sendResponse('圖片 ID 錯誤', 400);
             }
             if (!empty($coai)) {

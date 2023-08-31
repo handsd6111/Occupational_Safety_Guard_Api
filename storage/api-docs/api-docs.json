@@ -1499,14 +1499,6 @@
                                         "example": 1
                                     },
                                     "cause_of_accident_images[]": {
-                                        "description": "承攬關係的圖片",
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string",
-                                            "format": "binary"
-                                        }
-                                    },
-                                    "improve_strategy_images[]": {
                                         "description": "事故原因的圖片",
                                         "type": "array",
                                         "items": {
@@ -1514,8 +1506,16 @@
                                             "format": "binary"
                                         }
                                     },
-                                    "contract_relationship_images[]": {
+                                    "improve_strategy_images[]": {
                                         "description": "改善對策的圖片",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "format": "binary"
+                                        }
+                                    },
+                                    "contract_relationship_images[]": {
+                                        "description": "承攬關係的圖片",
                                         "type": "array",
                                         "items": {
                                             "type": "string",
@@ -1758,29 +1758,20 @@
                                         "format": "json",
                                         "example": 1
                                     },
-                                    "cause_of_accident_images[]": {
-                                        "description": "承攬關係的圖片(三選一)",
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string",
-                                            "format": "binary"
-                                        }
-                                    },
-                                    "improve_strategy_images[]": {
+                                    "cause_of_accident_image": {
                                         "description": "事故原因的圖片(三選一)",
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string",
-                                            "format": "binary"
-                                        }
+                                        "type": "string",
+                                        "format": "binary"
                                     },
-                                    "contract_relationship_images[]": {
+                                    "improve_strategy_image": {
                                         "description": "改善對策的圖片(三選一)",
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string",
-                                            "format": "binary"
-                                        }
+                                        "type": "string",
+                                        "format": "binary"
+                                    },
+                                    "contract_relationship_image": {
+                                        "description": "承攬關係的圖片(三選一)",
+                                        "type": "string",
+                                        "format": "binary"
                                     }
                                 },
                                 "type": "object"
@@ -2013,11 +2004,11 @@
                     {
                         "name": "type",
                         "in": "query",
-                        "description": "圖片在哪個災害紀錄",
+                        "description": "圖片在哪個災害紀錄(coa / cr / is)",
                         "required": true,
                         "schema": {
-                            "type": "integer",
-                            "default": 1
+                            "type": "string",
+                            "default": "coa"
                         }
                     }
                 ],

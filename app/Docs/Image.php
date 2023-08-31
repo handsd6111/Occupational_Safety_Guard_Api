@@ -28,15 +28,6 @@ interface Image extends Info
      *                 ),
      *                 @OA\Property(
      *                     property="cause_of_accident_images[]",
-     *                     description="承攬關係的圖片",
-     *                     type="array",
-     *                     @OA\Items(
-     *                         type="string",
-     *                         format="binary"
-     *                     )
-     *                 ),
-     *                 @OA\Property(
-     *                     property="improve_strategy_images[]",
      *                     description="事故原因的圖片",
      *                     type="array",
      *                     @OA\Items(
@@ -45,8 +36,17 @@ interface Image extends Info
      *                     )
      *                 ),
      *                 @OA\Property(
-     *                     property="contract_relationship_images[]",
+     *                     property="improve_strategy_images[]",
      *                     description="改善對策的圖片",
+     *                     type="array",
+     *                     @OA\Items(
+     *                         type="string",
+     *                         format="binary"
+     *                     )
+     *                 ),
+     *                 @OA\Property(
+     *                     property="contract_relationship_images[]",
+     *                     description="承攬關係的圖片",
      *                     type="array",
      *                     @OA\Items(
      *                         type="string",
@@ -169,31 +169,22 @@ interface Image extends Info
      *                     example=1
      *                 ),
      *                 @OA\Property(
-     *                     property="cause_of_accident_images[]",
-     *                     description="承攬關係的圖片(三選一)",
-     *                     type="array",
-     *                     @OA\Items(
-     *                         type="string",
-     *                         format="binary"
-     *                     )
-     *                 ),
-     *                 @OA\Property(
-     *                     property="improve_strategy_images[]",
+     *                     property="cause_of_accident_image",
      *                     description="事故原因的圖片(三選一)",
-     *                     type="array",
-     *                     @OA\Items(
-     *                         type="string",
-     *                         format="binary"
-     *                     )
+     *                     type="string",
+     *                     format="binary"
      *                 ),
      *                 @OA\Property(
-     *                     property="contract_relationship_images[]",
+     *                     property="improve_strategy_image",
      *                     description="改善對策的圖片(三選一)",
-     *                     type="array",
-     *                     @OA\Items(
-     *                         type="string",
-     *                         format="binary"
-     *                     )
+     *                     type="string",
+     *                     format="binary"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="contract_relationship_image",
+     *                     description="承攬關係的圖片(三選一)",
+     *                     type="string",
+     *                     format="binary"
      *                 )
      *             )
      *         )
@@ -307,12 +298,12 @@ interface Image extends Info
      *     ),
      *     @OA\Parameter(
      *          name="type",
-     *          description="圖片在哪個災害紀錄",
+     *          description="圖片在哪個災害紀錄(coa / cr / is)",
      *          required=true,
      *          in="query",
      *          @OA\Schema(
-     *              default=1,
-     *              type="integer"
+     *              default="coa",
+     *              type="string"
      *          )
      *     ),
      *     @OA\Response(
