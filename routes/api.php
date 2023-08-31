@@ -32,7 +32,7 @@ use Illuminate\Support\Facades\Storage;
 Route::prefix('auth')->group(function () {
     Route::post('register', [UserController::class, 'create']);
     Route::post('login', [AuthController::class, 'login']);
-    Route::post('refresh_token', [AuthController::class, 'refreshToken'])->middleware('auth:user');
+    Route::post('refresh_token', [AuthController::class, 'refreshToken']);
 });
 
 // Route::get('send_mail/{id}', [MajorOccupationalAccidentController::class, 'sendMail']);

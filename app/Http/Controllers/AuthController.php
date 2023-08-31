@@ -12,8 +12,8 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-    const accessTokenExpireTime = 30 * 60;
-    const refreshTokenExpireTime = 60 * 60;
+    const accessTokenExpireTime = 5 * 60; // 5分鐘
+    const refreshTokenExpireTime = 5 * 60 * 60; // 5個小時
 
     /**
      * 使用者登入
@@ -37,7 +37,7 @@ class AuthController extends Controller
 
         // 取得指定帳號的使用者。
         $user = User::where('account', $request['account'])->first();
-        
+
         // 建立Access Token與Refresh Token。
         $accessItem = self::generateAccessItem($user);
         $refreshToken = RefreshToken::firstOrCreate([
@@ -56,7 +56,7 @@ class AuthController extends Controller
             return $this->sendResponse(['password' => 'Your password is wrong.'], IStatusCode::BAD_REQUEST);
         }
     }
-    
+
     /**
      * 更新原有的Access Token。
      * 
@@ -80,6 +80,7 @@ class AuthController extends Controller
             'access_token' => 'required|string',
             'refresh_token' => 'required|string|exists:refresh_tokens,id'
         ]);
+
         if ($validator->fails()) {
             return $this->sendResponse($validator->errors(), IStatusCode::BAD_REQUEST);
         }
