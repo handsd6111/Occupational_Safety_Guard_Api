@@ -163,7 +163,7 @@ class LaborFileSeeder extends Seeder
             ],
             [
                 'id' => 77,
-                'name' => '<p><a href="https://www.bli.gov.tw/0106733.html"退保後職業病失能津貼申請書及給付收據</a>。</p>',
+                'name' => '<p><a href="https://www.bli.gov.tw/0106733.html">退保後職業病失能津貼申請書及給付收據</a>。</p>',
             ], [
                 'id' => 78,
                 'name' => '<p>職業病診斷書。(須由認可醫療機構職業醫學科專科醫師出具)</p>',
