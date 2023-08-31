@@ -19,7 +19,7 @@ class RemoveIfRefreshTokenExpired extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = '刪除 SQL 中過期的 RefreshToken ';
 
     /**
      * Execute the console command.

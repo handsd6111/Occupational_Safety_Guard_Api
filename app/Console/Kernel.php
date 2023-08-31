@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
     {
         // 記得要去 crontab -e 寫入 * * * * * php /path/to/artisan schedule:run
         $schedule->command('remove-if-refresh-token-expired')->daily();
+        $schedule->command('crawl-data')->dailyAt('3:00');
     }
 
     /**
