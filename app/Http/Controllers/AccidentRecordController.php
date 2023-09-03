@@ -120,6 +120,7 @@ class AccidentRecordController extends Controller
 
     public function generateWord(Request $request)
     {
+        // return ($this->sendResponse($request->all(), 200, 1, 1));
         // 建立一個新的 Word 物件
         $phpWord = new PhpWord();
         $section = $phpWord->addSection();
@@ -144,6 +145,9 @@ class AccidentRecordController extends Controller
         // 罹災者資料
         $table->addRow();
         $table->addCell(9000)->addText('一、罹災者資料', $tableTitleStyle);
+        if (!$request->has('victims')) {
+            $request['victims'] = ["{name: ''}"];
+        }
         if ($request->has('victims') && !empty($request['victims'])) {
             foreach ($request['victims'] as $victim) {
                 $victim = json_decode($victim);
@@ -322,7 +326,7 @@ class AccidentRecordController extends Controller
         會同勞工代表：
         ", $tableTitleStyle);
 
-        $filename = now() . '.docx';
+        $filename = '工作場所職業災害調查結果表' . date("Y-m-d-H_i_s", now()->timestamp) . '.docx';
         $phpWord->save('../storage/app/' . $filename);
         return response()->download('../storage/app/' . $filename)->deleteFileAfterSend(true);
     }
