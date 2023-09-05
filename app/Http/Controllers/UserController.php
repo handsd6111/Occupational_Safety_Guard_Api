@@ -64,18 +64,23 @@ class UserController extends Controller
         return $this->sendResponse([], IStatusCode::CREATED);
     }
 
-    public function getUserHasSubscribe(Request $request)
+    public function getUser(Request $request)
     {
         $user = $this->getUserByJwt($request);
-        // return $user->subscribe;
-        return $this->sendResponse((bool)$user->subscribe, 200, 1, 1);
+        unset($user->password);
+        unset($user->id);
+        $user->enabled = $user->enabled === 0 ? false : true;
+        $user->subscribe = $user->subscribe === 0 ? false : true;
+        return $this->sendResponse($user, 200, 1, 1);
     }
 
-    public function subscribeAccident(Request $request)
+    public function updateUser(Request $request)
     {
         // 建立Validation規則。
         $validator = Validator::make($request->all(), [
-            'subscribe' => 'required|bool',
+            "name" => "string",
+            "email" => "email|unique:users,email",
+            "subscribe" => "bool",
         ]);
 
         if ($validator->fails()) {
@@ -83,10 +88,19 @@ class UserController extends Controller
         }
 
         $user = $this->getUserByJwt($request);
-        $user->subscribe = $request['subscribe'];
+        if (!empty($request['name']))
+            $user->name = $request['name'];
+        if (!empty($request['email']))
+            $user->email = $request['email'];
+        if (!empty($request['subscribe']))
+            $user->subscribe = $request['subscribe'];
         $user->save();
-        
-        return $this->sendResponse((bool)$user->subscribe, 200, 1, 1);
+
+        unset($user->password);
+        unset($user->id);
+        $user->enabled = $user->enabled === 0 ? false : true;
+        $user->subscribe = $user->subscribe === 0 ? false : true;
+        return $this->sendResponse($user, 200, 1, 1);
     }
 
     public function getUserByJwt($request)

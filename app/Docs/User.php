@@ -77,9 +77,9 @@ interface User extends Info
     /**
      * @OA\Get(
      *     tags={"使用者"},
-     *     path="/api/users/subscribe",
-     *     summary="取得使用者訂閱",
-     *     description="取得使用者是否有訂閱重大職災事件推播",
+     *     path="/api/users",
+     *     summary="取得使用者",
+     *     description="取得使用者的資訊",
      *     security={{"api_jwt_security": {}}},
      *     @OA\Response(
      *         response=201, 
@@ -87,7 +87,7 @@ interface User extends Info
      *         @OA\JsonContent(
      *             @OA\Property(
      *                 property="data",
-     *                 type="boolean"
+     *                 type="object"
      *             ),
      *             @OA\Property(
      *                 property="statusCode",
@@ -113,20 +113,36 @@ interface User extends Info
      *     )
      * )
      */
-    public function getUserHasSubscribe(Request $request);
+    public function getUser(Request $request);
 
     /**
      * @OA\Put(
      *     tags={"使用者"},
-     *     path="/api/users/subscribe",
+     *     path="/api/users",
      *     summary="修改使用者訂閱",
      *     description="修改使用者是否訂閱重大職災事件推播",
      *     security={{"api_jwt_security": {}}},
      *     @OA\Parameter(
+     *         name="name",
+     *         in="query",
+     *         description="姓名",
+     *         required=false,
+     *         @OA\Schema(type="string"),
+     *         example="王大明"
+     *     ),
+     *     @OA\Parameter(
+     *         name="email",
+     *         in="query",
+     *         description="信箱",
+     *         required=false,
+     *         @OA\Schema(type="string"),
+     *         example="test@gmail.com"
+     *     ),
+     *     @OA\Parameter(
      *         name="subscribe",
      *         in="query",
      *         description="是否訂閱(1: 訂閱, 0: 取消訂閱)",
-     *         required=true,
+     *         required=false,
      *         @OA\Schema(type="integer"),
      *         example=1
      *     ),
@@ -136,7 +152,7 @@ interface User extends Info
      *         @OA\JsonContent(
      *             @OA\Property(
      *                 property="data",
-     *                 type="boolean"
+     *                 type="object"
      *             ),
      *             @OA\Property(
      *                 property="statusCode",
@@ -162,5 +178,5 @@ interface User extends Info
      *     )
      * )
      */
-    public function subscribeAccident(Request $request);
+    public function updateUser(Request $request);
 }

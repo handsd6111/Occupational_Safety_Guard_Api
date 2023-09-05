@@ -45,9 +45,9 @@ Route::post('generateWord', [AccidentRecordController::class, 'generateWord']);
 
 Route::middleware('auth:user')->group(function () {
 
-    Route::prefix('users/subscribe')->group(function () {
-        Route::get('', [UserController::class, 'getUserHasSubscribe']);
-        Route::put('', [UserController::class, 'subscribeAccident']);
+    Route::prefix('users')->group(function () {
+        Route::get('', [UserController::class, 'getUser']);
+        Route::put('', [UserController::class, 'updateUser']);
     });
 
     Route::prefix('records')->group(function () {

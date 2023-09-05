@@ -1009,7 +1009,7 @@
                                     "business_name": {
                                         "type": "string"
                                     },
-                                    "business_industry": {
+                                    "business_industry_code": {
                                         "type": "string"
                                     },
                                     "number_of_labor": {
@@ -3156,14 +3156,14 @@
                 }
             }
         },
-        "/api/users/subscribe": {
+        "/api/users": {
             "get": {
                 "tags": [
                     "使用者"
                 ],
-                "summary": "取得使用者訂閱",
-                "description": "取得使用者是否有訂閱重大職災事件推播",
-                "operationId": "d0abdd8cc2081af527f36242a7e865a2",
+                "summary": "取得使用者",
+                "description": "取得使用者的資訊",
+                "operationId": "dbd9b3a6476658e4b3214094fd4272f7",
                 "responses": {
                     "201": {
                         "description": "建立資料成功。",
@@ -3172,7 +3172,7 @@
                                 "schema": {
                                     "properties": {
                                         "data": {
-                                            "type": "boolean"
+                                            "type": "object"
                                         },
                                         "statusCode": {
                                             "type": "integer",
@@ -3209,13 +3209,33 @@
                 ],
                 "summary": "修改使用者訂閱",
                 "description": "修改使用者是否訂閱重大職災事件推播",
-                "operationId": "83699057f54649932ae83923f3b224e6",
+                "operationId": "83392777886acca84118eca23e521c53",
                 "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "姓名",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "王大明"
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "信箱",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "test@gmail.com"
+                    },
                     {
                         "name": "subscribe",
                         "in": "query",
                         "description": "是否訂閱(1: 訂閱, 0: 取消訂閱)",
-                        "required": true,
+                        "required": false,
                         "schema": {
                             "type": "integer"
                         },
@@ -3230,7 +3250,7 @@
                                 "schema": {
                                     "properties": {
                                         "data": {
-                                            "type": "boolean"
+                                            "type": "object"
                                         },
                                         "statusCode": {
                                             "type": "integer",
