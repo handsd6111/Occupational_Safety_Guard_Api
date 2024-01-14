@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-    const accessTokenExpireTime = 5 * 60; // 5分鐘
+    const accessTokenExpireTime = 7 * 60 * 60 * 24; // 5分鐘
+    // const accessTokenExpireTime = 5 * 60; // 5分鐘
     const refreshTokenExpireTime = 5 * 60 * 60; // 5個小時
 
     /**

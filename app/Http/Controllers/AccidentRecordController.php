@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AccidentRecord;
+use App\Models\Industry;
 use App\Models\Interfaces\IStatusCode;
 use App\Models\User;
 use App\Models\Victim;
@@ -196,7 +197,8 @@ class AccidentRecordController extends Controller
         $textRun = $table->addCell(9000)->addTextRun();
 
         $textRun->addText("行業別：", $tableContentStyle);
-        $business_industry = empty($datas->business_industry) ? "   " : $datas->business_industry;
+        $business_industry = Industry::find($datas->business_industry_code)->name;
+        $business_industry = empty($business_industry) ? "   " : $business_industry;
         $textRun->addText("     $business_industry     ", $underlinStyle);
 
         $textRun->addText("  勞工人數：", $tableContentStyle);

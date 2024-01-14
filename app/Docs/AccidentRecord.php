@@ -512,7 +512,7 @@ interface AccidentRecord extends Info
      *                     ),
      *                 ),
      *                 @OA\Property(property="business_name", type="string"),
-     *                 @OA\Property(property="business_industry", type="string"),
+     *                 @OA\Property(property="business_industry_code", type="string"),
      *                 @OA\Property(property="number_of_labor", type="string"),
      *                 @OA\Property(property="business_owner", type="string"),
      *                 @OA\Property(property="business_address", type="string"),

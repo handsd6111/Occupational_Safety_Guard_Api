@@ -59,6 +59,7 @@ class Handler extends ExceptionHandler
             } else if ($ex instanceof ExpiredException) {
                 return Controller::sendResponse([$ex->getMessage()], IStatusCode::UNAUTHORIZED);
             } else {
+                return Controller::sendResponse([$ex->getMessage()], IStatusCode::INTERNAL_SERVER_ERROR);
             }
         });
     }
